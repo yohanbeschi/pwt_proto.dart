@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>addClasses()/removeClasses()</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      .bblue{background-color:blue;}
+      .blue{color:blue;}
+      .bred{background-color:red;}
+      .red{color:red;}
+      .bgreen{background-color:green;}
+      .green{color:green;}
+      .byellow{background-color:yellow;}
+      .yellow{color:yellow;}
+    </style>
+  </head>
+ 
+  <body>   
+    <h2>addClasses()/removeClasses()</h2>
+    
+    <div class="example">
+      <table class="exampleContent">
+        <tr>
+          <td>
+<pre>
+&lt;style&gt;
+  .bblue{background-color:blue;}
+  .blue{color:blue;}
+  .bred{background-color:red;}
+  .red{color:red;}
+  .bgreen{background-color:green;}
+  .green{color:green;}
+  .byellow{background-color:yellow;}
+  .yellow{color:yellow;}
+&lt;/style&gt;
+&lt;ul&gt;
+  &lt;li id="one"&gt;First&lt;/li&gt;
+  &lt;li id="two"&gt;Second&lt;/li&gt;
+  &lt;li id="three"&gt;Third&lt;/li&gt;
+  &lt;li id="four"&gt;Fourth&lt;/li&gt;
+&lt;/ul&gt;</pre>
+          </td>
+          <td>
+            <table>
+              <tr>
+                <td>Selector: </td>
+                <td><input type="text" id="selector" value="#three" /></td>
+              </tr>
+              <tr>
+                <td>Class: </td>
+                <td><input type="text" id="class" value="byellow red" /></td>
+              </tr>
+              <tr>
+                <td align="center"><button id="addClassesButton">Add Classes</button></td>
+                <td align="center"><button id="removeClassesButton">Remove Classes</button></td>
+              </tr>
+            </table>
+          </td>    
+          <td>
+            <div style="border:1px solid rgba(0,0,0,0.5);border-radius:4px; padding:20px 20px 20px 0" id="result">
+              <ul>
+                <li id="one">First</li>
+                <li id="two">Second</li>
+                <li id="three">Third</li>
+                <li id="four">Fourth</li>
+              </ul>
+            </div>
+          </td>    
+        </tr>  
+      </table>  
+    </div>
+    
+    <div class="uses">
+    <pre>
+--void addClasses(final String classesName)
+ 
+$('ul li').addClasses('byellow red') // Add classes 'byellow' and 'red' too all elements returned by $()
+$('#two').addClasses('blue') // Add class 'blue' to element with id 'two'
+
+--void removeClasses([final String classesName])
+
+$('ul li').removeClasses() // remove all classes too all elements returned by $()
+$('ul li').removeClasses('byellow red') // Remove classes 'byellow' and 'red' too all elements returned by $()
+$('#two').addClasses('blue') // Remove class 'blue' to element with id 'two'</pre>
+ </div>
+ 
+    <script src="add_classes.js"></script>
+  </body>
+</html>

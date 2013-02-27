@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>addClasses()/removeClasses()</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+ 
+  <body>   
+    <h2>css()</h2>
+    
+    <div class="example">
+      <table class="exampleContent">
+        <tr>
+          <td>
+<pre>
+&lt;div id="box"&gt;
+  
+&lt;/div&gt;</pre>
+          </td>
+          <td>
+            <table>
+              <tr>
+                <td>Properties: </td>
+                <td><textarea id="properties">{'height':'50px','backgroundColor':'blue','margin-top':'40px'}</textarea></td>
+              </tr>
+              <tr>
+                <td align="center" colspan="2"><button id="setPropertiesButton">Set Properties</button></td>
+              </tr>
+            </table>
+          </td>    
+          <td>
+            <div style="border:1px solid rgba(0,0,0,0.5);border-radius:4px; padding:20px; height:200px;width:200px" id="result">
+              <div id="box">
+                <div id="box1"></div>
+                <div id="box2"></div>
+              </div>
+            </div>
+          </td>    
+        </tr>  
+      </table>  
+    </div>
+    
+    <div class="uses">
+    <pre>
+--void css(final Map properties)
+ 
+$('#box').css({'height':'50px','backgroundColor':'blue','margin-top':'40px'}); // Property names in camel case or standard notation
+ </div>
+ 
+    <script src="css.js"></script>
+  </body>
+</html>

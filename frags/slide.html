@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>slideUp()/slideDown()/slideToggle()</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      .box {
+        /*height:150px;*/
+        min-height:0px;
+        width:150px;
+        border:1px solid #000;
+        background-color:#77aaff;
+      }
+    </style>
+  </head>
+ 
+  <body>   
+    <h2>slideUp()/slideDown()/slideToggle()</h2>
+    <div class="example">
+        <button id="slideDown">Slide Down</button><button id="slideUp">Slide Up</button>
+        <div id="box1" class="box">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.
+        </div>
+        
+        <br>
+        
+        <button id="slideToggle">Slide Toggle</button>
+        <div id="box2" class="box">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.
+        </div>
+    </div>
+    
+    <div class="uses">
+    <pre>
+-- Timeline slideUp(final Element element, final num duration, final SlideOptions options)
+slideUp(query('#box1'), 1, new SlideOptions())
+
+-- Timeline slideDown(final Element element, final num duration, final SlideOptions options)
+slideDown(query('#box1'), 1, new SlideOptions())
+
+-- Timeline slideToggle(final Element element, final num duration, final SlideOptions options)
+slideToggle(query('#box2'), 1, new SlideOptions())
+</pre>
+
+    </div>
+ 
+    <script src="slide.js"></script>
+  </body>
+</html>

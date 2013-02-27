@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Animation</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+ 
+  <body>   
+    <h2>Animation</h2>
+    <div class="example">
+        <table class="exampleContent">
+          <tr>
+            <td>
+              <button id="animate">Animate</button>
+              <div id="box05" style="border:1px solid #000;height:150px;width:50px;background: blue url('../img/dart_logo.png') 10px 10px"></div>
+              <div id="box15" style="border:1px solid #000;height:150px;width:50px;background: blue url('../img/dart_logo.png') 10px 10px"></div>  
+            </td>    
+          </tr>  
+        </table> 
+    </div>
+    
+    <div class="uses">
+      <pre>
+-- Animation(Element this._element, num this._duration, Map properties, AnimationOptions this._options)
+
+final Animation anim = new Animation(query('#box05'), 3,
+        {'opacity': {'from':1, 'to':0},
+         'width': '150px',
+         'margin-left': {'from':'0px', 'to':'25px'},
+         'background-position':'-20px -20px'}, new AnimationOptions());
+anim.start();
+
+// If two (or more animations) are started (like in the example), they will run simultaneously.</pre>
+    </div>
+
+    <script src="animation.js"></script>
+  </body>
+</html>

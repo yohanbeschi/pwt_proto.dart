@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>isVisible()/isDisplayed()</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+ 
+  <body>   
+    <h2>isVisible()/isDisplayed()</h2>
+    <div class="example">
+        <table class="exampleContent">
+          <tr>
+            <td>
+<pre>
+&lt;div id="box1" style="display:none"&gt;&lt;/div&gt;
+&lt;div id="box2"&gt;&lt;/div&gt;
+&lt;div id="box3" style="height:0px"&gt;&lt;/div&gt;
+&lt;div id="box4" style="visibility:hidden"&gt;&lt;/div&gt;
+&lt;div id="box5"&gt;Something inside&lt;/div&gt;</pre>              
+            </td>   
+            <td>
+              <table>
+                <tr>
+                  <td>Selector: </td>
+                  <td><input type="text" id="selector" value="#box1" /></td>
+                </tr>
+                <tr>
+                  <td align="center" colspan="2">
+                    <button id="isVisibleButton">Is Visible ?</button>
+                    <button id="isDisplayedButton">Is Displayed ?</button>
+                    <button id="clear">Clear</button>
+                  </td>
+                </tr>
+              </table>              
+            </td>
+            <td>
+              <div style="border:1px solid rgba(0,0,0,0.5);border-radius:4px; height:100px; width:100px; text-align:center" id="result"></div>
+            </td> 
+          </tr>  
+        </table> 
+    </div>
+    
+    <div class="uses">
+ <pre>
+--bool isVisible() 
+ 
+$('#box4').isVisible() // Check if the element with id 'box4' has the property 'visibility' set to 'hidden' or not
+                       // If ${} return a list, only the first element is checked
+
+--bool idDisplayed() 
+ 
+$('#box2').idDisplayed() // Check if the element with id 'box4' has the property 'display' set to 'none' or not
+                         // and if the property 'offsetHeight' is greater than 0 or not.
+                         // If ${} return a list, only the first element is checked</pre>
+      <p style="margin-top:10px">
+      <u>Important note</u> : If the element with id 'box5' were to be included in an ascendant element with the property 'display' set to
+      'none', the method <code>$('#box5').idDisplayed()</code> would return <code>false</code>.
+      </p>
+    </div>
+
+    <div id="sample" style="left:-1000px;position:absolute">
+      <div id="box1" style="float:left;border:1px solid #000;display:none">Box1</div>
+      <div id="box2" style="float:left;"></div>
+      <div id="box3" style="float:left;height:0px"></div>
+      <div id="box4" style="float:left;border:1px solid #000;visibility:hidden">Box4</div>
+      <div id="box5" style="float:left;border:1px solid #000;">Box5</div>
+    </div>  
+
+    <script src="is_visible.js"></script>
+  </body>
+</html>

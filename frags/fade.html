@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>fadeOut()/fadeIn()/fadeTo()</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+      .box {
+        /*height:150px;*/
+        min-height:0px;
+        width:150px;
+        border:1px solid #000;
+        background-color:#77aaff;
+      }
+    </style>
+  </head>
+ 
+  <body>   
+    <h2>fadeOut()/fadeIn()/fadeTo()</h2>
+    <div class="example">
+        <button id="fadeIn">Fade In</button><button id="fadeOut">Fade Out</button>
+        <div id="box1" class="box">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.
+        </div>
+    </div>
+    
+    <div class="uses">
+    <pre>
+-- Timeline fadeOut(final Element element, final num duration, final SlideOptions options)
+
+-- Timeline fadeIn(final Element element, final num duration, final SlideOptions options)
+
+-- Timeline fadeTo(final Element element, final double opacity, final num duration, final SlideOptions options)
+</pre>
+
+    </div>
+ 
+    <script src="fade.js"></script>
+  </body>
+</html>

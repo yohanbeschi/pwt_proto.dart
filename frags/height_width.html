@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>height/width</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+ 
+  <body>   
+    <h2>height/width</h2>
+    <div class="example">
+        <table class="exampleContent">
+          <tr>
+            <td>
+              <button id="height">Height</button><button id="width">Width</button>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+    <div id="box" style="border:20pt solid #000;background-color:red;margin:50pt;padding:50pt">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+      condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.  
+    </div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+            </td>    
+          </tr>  
+        </table> 
+    </div>
+    
+    <div class="uses">
+      <pre>
+--int get height
+
+$('#box1').height // Get the height of the element without the padding and the size of the border.
+
+--int get width
+
+$('#box1').width // Get the width of the element without the padding and the size of the border.</pre>
+    </div>
+
+    <script src="height_width.js"></script>
+  </body>
+</html>

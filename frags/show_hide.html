@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>show()/hide()</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+ 
+  <body>   
+    <h2>show()/hide()</h2>
+    <div class="example">
+        <table class="exampleContent">
+          <tr>
+            <td>
+              <h3>With useVisibility</h3>
+    <button id="show1">Show</button><button id="hide1">Hide</button>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+    <div id="box1" style="height:150px;width:150px;border:1px solid #000;background-color:#77aaff"></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+    
+    <h3 style="margin-top:20px">Without useVisibility</h3>
+    <button id="show2">Show</button><button id="hide2">Hide</button>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+    <div id="box2" style="height:150px;width:150px;border:1px solid #000;background-color:#77aaff"></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+            </td>    
+          </tr>  
+        </table> 
+    </div>
+    
+    <div class="uses">
+    <pre>
+--void show({bool useVisibility:false})
+ 
+$('#box1').show(useVisibility:true)
+$('#box2').show();
+
+--void hide({bool useVisibility:false})
+
+$('#box1').hide(useVisibility:true)
+$('#box2').hide();</pre>
+    </div>
+ 
+    <script src="show_hide.js"></script>
+  </body>
+</html>
