@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>toggle()</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+ 
+  <body>   
+    <h2>toggle()</h2>
+    <div class="example">
+        <table class="exampleContent">
+          <tr>
+            <td>
+              <h3>With useVisibility</h3>
+    <button id="toggle1">Toogle</button>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+    <div id="box1" style="height:150px;width:150px;border:1px solid #000;background-color:red"></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+    
+    <h3 style="margin-top:20px">Without useVisibility</h3>
+    <button id="toggle2">Toggle</button>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+    <div id="box2" style="height:150px;width:150px;border:1px solid #000;background-color:red"></div>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur adipiscing, tellus eget convallis 
+    condimentum, purus purus porttitor libero, eu scelerisque nunc sapien iaculis justo.</p>
+            </td>    
+          </tr>  
+        </table> 
+    </div>
+    
+    <div class="uses">
+      <pre>
+    <pre>
+--void toggle({bool useVisibility:false})
+ 
+$('#box1').toggle(useVisibility:true) //
+$('#box2').toggle(); //</pre>    
+      </pre>
+    </div>    
+
+    <script type="application/dart" src="toggle.dart"></script>
+    <script src="../dart.js"></script>
+  </body>
+</html>

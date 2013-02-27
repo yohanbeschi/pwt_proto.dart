@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>hasClass()</title>
+    <link rel="stylesheet" href="../css/style.css">
+  </head>
+ 
+  <body>   
+    <h2>hasClass()</h2>
+    <div class="example">
+        <table class="exampleContent">
+          <tr>
+            <td>
+<pre>
+&lt;ul&gt;
+  &lt;li id="one" class="here"&gt;First&lt;/li&gt;
+  &lt;li id="two" class="test1 here"&gt;Second&lt;/li&gt;
+  &lt;li id="three" class="test2 here test3 test4"&gt;Third&lt;/li&gt;
+  &lt;li id="four" class="here"&gt;Fourth&lt;/li&gt;
+&lt;/ul&gt;</pre>             
+            </td>
+            <td>
+              <table>
+                <tr>
+                  <td>Selector: </td>
+                  <td><input type="text" id="selector" value="ul li" /></td>
+                </tr>
+                <tr>
+                  <td>Class: </td>
+                  <td><input type="text" id="class" value="here" /></td>
+                </tr>
+                <tr>
+                  <td colspan="2" align="center"><button id="hasClassButton">Have/Has Class ?</button></td>
+                </tr>
+              </table>              
+            </td> 
+            <td>
+              <div style="border:1px solid rgba(0,0,0,0.5);border-radius:4px; height:100px; width:100px; text-align:center" id="result"></div>
+            </td>  
+          </tr>  
+        </table> 
+    </div>
+    
+    <div class="uses">
+ <pre>
+ --bool hasClass(final String className)
+ 
+ $('ul li').hasClass('here') // Check if all elements returned by $() have the class 'here'
+ $('#two').hasClass('test2') // Check if element with id 'two' has the class 'test2'</pre>
+    </div>
+  
+  
+    <div style="display:none" id="sample">
+      <ul>
+        <li id="one" class="here">First</li>
+        <li id="two" class="test1 here">Second</li>
+        <li id="three" class="test2 here test3 test4">Third</li>
+        <li id="four" class="here">Fourth</li>
+      </ul>
+    </div>  
+    
+    <script type="application/dart" src="has_class.dart"></script>
+    <script src="../dart.js"></script>
+  </body>
+</html>
