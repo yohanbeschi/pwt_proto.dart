@@ -77,6 +77,18 @@ class Timeline {
     _addListenersToAnimation();
   }
 
+  StreamSubscription<Timeline> onStart(TimelineAction timelineAction) 
+    => this._timelineStartController.stream.listen(timelineAction);
+  
+  StreamSubscription<Timeline> onStop(TimelineAction timelineAction) 
+    => this._timelineStopController.stream.listen(timelineAction);
+  
+  StreamSubscription<Timeline> onComplete(TimelineAction timelineAction) 
+    => this._timelineCompleteController.stream.listen(timelineAction);
+  
+  StreamSubscription<Timeline> onResume(TimelineAction timelineAction) 
+    => this._timelineResumeController.stream.listen(timelineAction);
+  
   /**
    * Returns true if the timeline is playing.
    */

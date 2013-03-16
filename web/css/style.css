@@ -1,6 +1,4 @@
-*, body {
-  margin: 0px;
-}  
+
 
 body {
   font: 12px "Helvetica Neue",Helvetica,Arial,sans-serif;
@@ -11,25 +9,42 @@ h2 {
   padding: 20px;
 }
 
-pre, .example, .uses {
+h3 {
+  background-color: rgba(20, 20, 20, 0.2);
+  padding: 20px;
+}
+
+.clear{clear:both;}
+
+.example, .uses, .example pre, .uses pre, .css, .html, .dart {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px 4px 4px 4px;
   display: block;
   margin: 15px;
-  padding: 9.5px 9.5px;
+  padding: 10px 10px;
   position: relative;
 }
 
 .example, .uses {
-  padding: 38px 9.5px 9.5px;
+  padding: 38px 10px 10px;
   width:auto;
 }
 
-.example pre {
+
+.css, .html, .dart {
   float:left;
+  /*padding: 38px 9.5px 9.5px;*/
+  padding: 38px 1% 1%;
+  margin: 15px 1%;
+  width: 25%;
+  border: 0.5% solid rgba(0, 0, 0, 0.5);
+}
+
+.dart {
+  width: 35%;
 }
   
-div.example:after, div.uses:after{
+div.example:after, div.uses:after, div.css:after, div.html:after, div.dart:after{
   background-color: #F5F5F5;
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 4px 0 4px 0;
@@ -49,5 +64,16 @@ div.example:after {
 
 div.uses:after {
   content: "Uses";
-  
+}
+
+div.css:after {
+  content: "CSS";
+}
+
+div.html:after {
+  content: "HTML";
+}
+
+div.dart:after {
+  content: "Dart";
 }

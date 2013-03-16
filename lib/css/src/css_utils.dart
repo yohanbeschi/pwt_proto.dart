@@ -4,6 +4,7 @@ final RegExp UNITS = new RegExp(r'width|height|top$|bottom$|left$|right$|spacing
 final RegExp NONE_NEGATIVE = new RegExp(r'width|height|padding|opacity');
 final RegExp UNIT = new RegExp(r"([a-zA-Z]{2,3})$");
 final RegExp SIZE = new RegExp(r"^([-]?\d+.?\d*)([a-zA-Z]{2,3}|[%]{1})$");
+final RegExp INT_SIZE = new RegExp(r"^([-]?\d+).?\d*[a-zA-Z]{2,3}|[%]{1}$");
 final RegExp DSIZE = new RegExp(r"^([-]?\d+.?\d*)([a-zA-Z]{2,3}|[%]{1})\s*([-]?\d+.?\d*)([a-zA-Z]{2,3}|[%]{1})$");
 final RegExp RGB = new RegExp(r"^rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$");
 final RegExp RGBA = new RegExp(r"^rgba\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)$");
@@ -25,6 +26,20 @@ Unit parseUnit(final String s) {
 double parseSizeValue(final String s) {
   final Iterable<Match> matches = SIZE.allMatches(s);
   return parseOneDecimal(matches.elementAt(0).group(1));
+}
+
+int parseSizeInt(final String s) {
+  final Iterable<Match> matches = INT_SIZE.allMatches(s);
+  return int.parse(matches.elementAt(0).group(1));
+}
+
+int parseIntOrZero(final String s) {
+  if (INT_SIZE.hasMatch(s)) {
+    final Iterable<Match> matches = INT_SIZE.allMatches(s);
+    return int.parse(matches.elementAt(0).group(1));
+  } else {
+    return 0;
+  }
 }
 
 Size parseSize(final String s) {

@@ -7,7 +7,7 @@ void tearDown(List<Animation> animations) {
 
 void addToQueueTest1() {
   // Block processing queue
-  final Timer timer = new Timer(10, (_) => _);
+  final Timer timer = new Timer(new Duration(milliseconds:10), () {});
   _manager._timer = timer;
       
   // At start up
@@ -37,7 +37,7 @@ void addToQueueTest1() {
 
 void addToQueueTest2() {
   // Block processing queue
-  final Timer timer = new Timer(10, (_) => _);
+  final Timer timer = new Timer(new Duration(milliseconds:10), () {});
   _manager._timer = timer;
       
   // At start up
@@ -82,7 +82,7 @@ void addToQueueTest2() {
 
 void removeFromQueueTest1() {
   // Block processing queue
-  final Timer timer = new Timer(10, (_) => _);
+  final Timer timer = new Timer(new Duration(milliseconds:10), () {});
   _manager._timer = timer;
   
   // Adding an animation to the queue
@@ -130,7 +130,7 @@ void removeFromQueueTest1() {
 
 void removeFromQueueTest2() {
   // Block processing queue
-  final Timer timer = new Timer(10, (_) => _);
+  final Timer timer = new Timer(new Duration(milliseconds:10), () {});
   _manager._timer = timer;
   
   // Adding an animation to the queue
@@ -177,7 +177,7 @@ void removeFromQueueTest2() {
 
 void processQueueTest1() {
   // Block processing queue
-  final Timer timer = new Timer(10, (_) => _);
+  final Timer timer = new Timer(new Duration(milliseconds:10), () {});
   _manager._timer = timer;
   
   // Adding an animation to the queue
@@ -214,7 +214,7 @@ void processQueueTest1() {
 
 void processQueueTest2() {
   // Block processing queue
-  final Timer timer = new Timer(10, (_) => _);
+  final Timer timer = new Timer(new Duration(milliseconds:10), () {});
   _manager._timer = timer;
   
   // Adding an animation to the queue
@@ -251,7 +251,7 @@ void processQueueTest2() {
 
 void processQueueTest3() {
   // Block processing queue
-  final Timer timer = new Timer(10, (_) => _);
+  final Timer timer = new Timer(new Duration(milliseconds:10), () {});
   _manager._timer = timer;
   
   // Adding an animation to the queue

@@ -37,3 +37,7 @@ num toOneDecimal(double d) {
   return i / 10;
   //return d.toInt();
 }
+
+int round(num number) {
+  return (number + 0.5).toInt();
+}
