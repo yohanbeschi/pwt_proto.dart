@@ -131,6 +131,10 @@ bool isDisplayed(final Element element) {
   }
 }
 
+bool isInDom(final Element element) {
+  return element.parent != null;
+}
+
 //----------------------------------------------------------------------------------------------------------------------
 // Show / Hide / Toggle
 //----------------------------------------------------------------------------------------------------------------------
@@ -220,8 +224,11 @@ Offset pageOffset(Element element, [bool skipFirstRelative = true]) {
  */
 Offset offset(final Element element) {
   final ClientRect cr = element.getBoundingClientRect();
-  return new Offset(cr.left.toInt() + window.document.documentElement.scrollLeft,
-                    cr.top.toInt() + window.document.documentElement.scrollTop);
+  //print('${cr.left.toInt()} ${window.document.documentElement.scrollLeft}'
+  //' - ${cr.top.toInt()} ${window.document.documentElement.scrollTop}');
+  
+  return new Offset(cr.left.toInt(),// + window.document.documentElement.scrollLeft,
+                    cr.top.toInt());// + window.document.documentElement.scrollTop);
 }
 
 /**
