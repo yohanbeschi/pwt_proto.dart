@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Draggable</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+      .example {
+        min-height: 150px;
+      }
+      
+      #container1, #container2, #container3, #container4 {
+        height: 200px;
+        width: 400px;
+      }
+      #drag1, #drag2, #drag3, #drag4, #drag5, #drag6 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        cursor: move;
+        border: 2px solid red;
+        /*margin: 10px;*/
+        padding: 10px;
+      }
+      #inner1, #inner2, #inner3, #inner4 {
+        height: 99px;
+        width: 99px;
+        background-color: green;
+      }
+
+      .placeholder2 {
+        border: 2px dotted blue;
+      }
+      
+      #container4 {
+        border: 2px dotted blue;
+      }
+      
+      #drag5 {
+        cursor:default;
+      }
+      #handle5 {
+        background-color: blue;
+        color: white;
+        cursor: move;
+      }
+      
+      #container7{
+        position: relative;
+        width: 400px;
+        height: 200px;
+        background-color: #eee;
+        overflow: hidden;
+      }
+      
+      #content7 {
+        position: absolute;
+        top:0; left:0; bottom:16px; right:16px;
+        overflow: auto;
+        z-index:99999;
+      }
+      
+      #resize-y{
+        background: #ddd url('../img/resize-y.png') center center no-repeat;
+        position: absolute;
+        height: 16px;
+        left:0px;
+        right:16px;
+        bottom:0px;
+        cursor: n-resize;
+      }
+      
+      #resize-x{
+        background: #ddd url('../img/resize-x.png') center center no-repeat;
+        position: absolute;
+        width: 16px;
+        top:0px;
+        right:0px;
+        bottom:16px;
+        cursor: e-resize;
+      }
+      
+      #resize-xy{
+        background: #ddd url('../img/resize-xy.gif') center center no-repeat;
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        right:0px;
+        bottom:0px;
+        cursor: se-resize;
+      }
+      
+    </style>
+  </head>
+ 
+  <body>   
+    <h2>Draggable</h2>
+    
+    <h3>Free Dragging</h3>
+    <div id="ex1" class="example">
+      <div id="drag1">Drag me</div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#drag1 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="drag1"&gt;Drag me&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+$('#drag1').draggable();</pre>
+    </div>
+ 
+    <h3 class="clear">Free Dragging with a placeholder</h3>
+    <div id="ex2" class="example">
+      <div id="drag2">Drag me</div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#drag2 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+
+.placeholder2 {
+  border: 2px dotted blue;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="drag2"&gt;Drag me&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+$('#drag2').draggable()
+  ..placeholderType = PlaceholderType.SPACER
+  ..placeholderClass = 'placeholder2';</pre>
+    </div>
+    
+    <h3 class="clear">Free Dragging with a clone as placeholder</h3>
+    <div id="ex3" class="example">
+       <div id="container3">
+        <div id="drag3"><div id="inner3">Drag me</div></div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#container3 {
+  height: 200px;
+  width: 400px;
+}
+#drag3 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}
+#inner3 {
+  height: 99px;
+  width: 99px;
+  background-color: green;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="container3"&gt;
+  &lt;div id="drag3"&gt;
+    &lt;div id="inner3"&gt;Drag me&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+$('#drag3').draggable()
+  ..placeholderType = PlaceholderType.CLONE;</pre>
+    </div>
+ 
+    <h3 class="clear">Dragging within a container</h3>
+    <div id="ex4" class="example">
+       <div id="container4">
+        <div id="drag4"><div id="inner4">Drag me</div></div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#container4 {
+  height: 200px;
+  width: 400px;
+  border: 2px dotted blue;
+}
+#drag4 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="container4"&gt;
+  &lt;div id="drag4"&gt;Drag me&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+$('#drag4').draggable()
+  ..container = '#container';</pre>
+    </div>   
+    
+    <h3 class="clear">Dragging an element using a handle</h3>
+    <div id="ex5" class="example">
+      <div id="drag5">
+        <div id="handle5">This header is a handle</div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#drag5 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="drag5"&gt;
+  &lt;div id="handle5"&gt;
+    This header is a handle
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+$('#drag5').draggable()
+    ..handle = '#handle5';</pre>
+    </div>
+    
+    <h3 class="clear">Restricting Dragging to an axis</h3>
+    <div id="ex6" class="example">
+      <div id="drag6">Drag me</div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#drag6 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="ex6"&gt;
+  &lt;div id="drag6"&gt;Drag me&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+$('#drag6').draggable()
+  ..container = '#ex6'
+  ..axis = Axis.X_AXIS;</pre>
+    </div>
+    
+    <h3 class="clear">Resize</h3>
+    <div id="ex7" class="example">
+      <div id="container7" >
+        <div id="content7">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae arcu nec metus iaculis vestibulum quis hendrerit libero. Sed tristique bibendum aliquam. Nam scelerisque felis ac velit consequat ac lobortis mi ornare. Suspendisse leo odio, vulputate a rhoncus ac, sollicitudin vel libero. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam non leo ut ante sollicitudin vehicula. Duis lacus ligula, euismod ornare interdum quis, sagittis vel sem. Quisque ullamcorper ligula sed purus dapibus tincidunt. Mauris a risus nec ligula hendrerit bibendum. Praesent a dui sit amet magna venenatis imperdiet. 
+        </div>
+        <div id="resize-x"></div>
+        <div id="resize-y"></div>
+        <div id="resize-xy"></div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#container7{
+  position: relative;
+  width: 400px;
+  height: 200px;
+  background-color: #eee;
+  overflow: hidden;
+}
+
+#content7 {
+  position: absolute;
+  top:0; left:0; bottom:16px; right:16px;
+  overflow: auto;
+  z-index:99999;
+}
+
+#resize-y{
+  background: #ddd url('../img/resize-y.png') 
+    center center no-repeat;
+  position: absolute;
+  height: 16px;
+  left:0px;
+  right:16px;
+  bottom:0px;
+  cursor: n-resize;
+}
+
+#resize-x{
+  background: #ddd url('../img/resize-x.png') 
+    center center no-repeat;
+  position: absolute;
+  width: 16px;
+  top:0px;
+  right:0px;
+  bottom:16px;
+  cursor: e-resize;
+}
+
+#resize-xy{
+  background: #ddd url('../img/resize-xy.gif') 
+    center center no-repeat;
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  right:0px;
+  bottom:0px;
+  cursor: se-resize;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="container7" &gt;
+  &lt;div id="content7"&gt;
+    [...]Text[...]
+  &lt;/div&gt;
+  &lt;div id="resize-x"&gt;&lt;/div&gt;
+  &lt;div id="resize-y"&gt;&lt;/div&gt;
+  &lt;div id="resize-xy"&gt;&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+final ExtElement ee7 = $('#container7');
+$('#resize-y').draggable()
+  ..container = '#container7'
+  ..enableOnlyUpperLimits()
+  ..axis = Axis.Y_AXIS
+  ..onMove((DragEvent d)
+     => ee7.style.height = 
+       '${ee7.height + d.drag.deltaPosition.top}px'
+  )
+  ..onDrop((_) {
+    $('#resize-y').style.left = '';
+    $('#resize-y').style.top = '';
+  });
+
+$('#resize-x').draggable()
+  ..container = '#container7'
+  ..enableOnlyUpperLimits()
+  ..axis = Axis.X_AXIS
+  ..onMove((DragEvent d) 
+      => ee7.style.width = 
+        '${ee7.width + d.drag.deltaPosition.left}px'
+  )
+  ..onDrop((_) {
+    $('#resize-x').style.left = '';
+    $('#resize-x').style.top = '';
+  });
+
+$('#resize-xy').draggable()
+  ..container = '#container7'
+  ..enableOnlyUpperLimits()
+  ..onMove((DragEvent d) {
+    ee7.style.height = 
+      '${ee7.height + d.drag.deltaPosition.top}px';
+    ee7.style.width = 
+      '${ee7.width + d.drag.deltaPosition.left}px';
+  })
+  ..onDrop((_) {
+    $('#resize-xy').style.left = '';
+    $('#resize-xy').style.top = '';
+  });</pre>
+    </div>
+    
+    <script type="application/dart" src="drag.dart"></script>
+    <script src="../dart.js"></script>
+  </body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>DraggablePoint & DraggableShadow</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+      #shadow1, #shadow2 {
+        height: 150px;
+        width: 150px;
+        border: 25px solid #000;
+        margin: 30px;
+        padding: 30px;
+      }
+    </style>
+  </head>
+ 
+  <body>   
+    <h2>DraggablePoint & DraggableShadow</h2>
+    
+    <h3>DraggablePoint</h3> 
+    <div id="ex1" class="example">
+      <div id="container1">
+          <div id="shadow1"></div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#shadow1 {
+  height: 150px;
+  width: 150px;
+  border: 25px solid #000;
+  margin: 30px;
+  padding: 30px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="shadow1"&gt;&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+Element element1 = new Element.tag('div');
+element1.style.position = 'absolute';
+element1.style.height = '20px';
+element1.style.width = '20px';
+element1.style.border = '1px solid #000';
+new DraggablePoint('#shadow1', element1);</pre>
+    </div>   
+    
+    <h3 class="clear">DraggableShadow</h3> 
+    <div id="ex2" class="example">
+      <div id="container2">
+          <div id="shadow2"></div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#shadow2 {
+  height: 150px;
+  width: 150px;
+  border: 25px solid #000;
+  margin: 30px;
+  padding: 30px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="shadow2"&gt;&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+new DraggableShadow('#shadow2');</pre>
+    </div>  
+    
+    <script type="application/dart" src="shadow.dart"></script>
+    <script src="../dart.js"></script>
+  </body>
+</html>

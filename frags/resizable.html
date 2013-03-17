@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Resizable</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+      #resizable1, #resizable2, #resizable3 {
+        height: 150px;
+        width: 150px;
+        border: 5px solid #000;
+        margin:15px;
+        /*padding:30px;*/
+      }
+    </style>
+  </head>
+ 
+  <body>   
+    <h2>Resizable</h2>
+    
+    <h3>Simple Resizable</h3> 
+    <div id="ex1" class="example">
+      <div id="container1">
+          <div id="resizable1"></div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#resizable1 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid #000;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="resizable1"&gt;&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+<pre>new Resizable('#resizable1');</pre>
+    </div>   
+    
+    <h3 class="clear">Resize with a shadow</h3> 
+    <div id="ex2" class="example">
+      <div id="container2">
+          <div id="resizable2">
+         </div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#resizable2 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid #000;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="resizable2"&gt;&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+<pre>new Resizable('#resizable2', useShadow:true);</pre>
+    </div>   
+    
+    <h3 class="clear">Resize with animation</h3> 
+    <div id="ex3" class="example">
+      <div id="container3">
+          <div id="resizable3">
+         </div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#resizable2 {
+  height: 150px;
+  width: 150px;
+  border: 1px solid #000;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="resizable2"&gt;&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+<pre>new Resizable('#resizable2', animate:true);</pre>
+    </div>   
+    
+    <script type="application/dart" src="resizable.dart"></script>
+    <script src="../dart.js"></script>
+  </body>
+</html>

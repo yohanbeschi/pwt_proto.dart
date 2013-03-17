@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>TreeDrag</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/tree.css">
+    
+    <style>
+      ul.dynatree-container {
+        width: 200px;
+        height: 230px;
+        cursor: default;
+      }
+    </style>  
+  </head>
+ 
+  <body>   
+    <h2>Draggable</h2>
+
+    <h3>Free Dragging with a placeholder</h3>
+    <div id="ex1" class="example">
+      <ul id="tree1" class="dynatree-container">
+       <li>
+         <span class="dynatree-node dynatree-exp-c dynatree-ico-c">
+           <span class="dynatree-connector"></span>
+           <span class="dynatree-icon"></span>
+           <span class="dynatree-title">Item 1</span>
+         </span>
+       </li>
+       <li>
+         <span class="dynatree-node dynatree-folder dynatree-expanded dynatree-has-children dynatree-exp-e dynatree-ico-ef">
+           <span class="dynatree-expander"></span>
+           <span class="dynatree-icon"></span>
+           <span class="dynatree-title">Folder 2</span>
+         </span>
+         <ul>
+           <li>
+             <span class="dynatree-node dynatree-has-children dynatree-exp-c dynatree-ico-c">
+               <span class="dynatree-expander"></span>
+               <span class="dynatree-icon"></span>
+               <span class="dynatree-title">Sub-item 2.1</span>
+             </span>
+           </li>
+           <li>
+             <span class="dynatree-node dynatree-exp-c dynatree-ico-c">
+               <span class="dynatree-connector"></span>
+               <span class="dynatree-icon"></span>
+               <span class="dynatree-title">Sub-item 2.2</span>
+             </span>
+           </li>
+           <li class="dynatree-lastsib">
+             <span class="dynatree-node dynatree-has-children dynatree-lastsib dynatree-exp-cdl dynatree-ico-c">
+               <span class="dynatree-expander"></span>
+               <span class="dynatree-icon"></span>
+               <span class="dynatree-title">Sub-item 2.3</span>
+             </span>
+           </li>
+         </ul>
+       </li>
+       <li>
+         <span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-c dynatree-ico-cf">
+           <span class="dynatree-expander"></span>
+           <span class="dynatree-icon"></span>
+           <span class="dynatree-title">Folder 3</span>
+         </span>
+       </li>
+       <li>
+         <span class="dynatree-node dynatree-folder dynatree-has-children dynatree-exp-cd dynatree-ico-cf">
+           <span class="dynatree-expander"></span>
+           <span class="dynatree-icon"></span>
+           <span class="dynatree-title">Lazy Folder 4</span>
+         </span>
+       </li>
+       <li class="dynatree-lastsib">
+         <span class="dynatree-node dynatree-lastsib dynatree-exp-cl dynatree-ico-c">
+           <span class="dynatree-connector"></span>
+           <span class="dynatree-icon"></span>
+           <span class="dynatree-title">Item 5</span>
+         </span>
+       </li>
+     </ul>
+    </div>
+    
+    <div class="css">
+    <pre>
+</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+</pre>
+    </div>
+    
+    <script type="application/dart" src="draggable_tree.dart"></script>
+    <script src="../dart.js"></script>
+  </body>
+</html>

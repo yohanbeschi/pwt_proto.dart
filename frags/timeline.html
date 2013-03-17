@@ -49,17 +49,18 @@
     <div class="uses">
       <pre>
 -- Timeline(List&lt;List&lt;dynamic&gt;&gt; channels, TimelineOptions this._options)
-- Each channel contains a list of animations.
-- Each channel run at the same time as the others.
-- For each channel, the animations will run successively .
+- Each channel contains a list of animation.
+- Each channel run at the same time as the others
+- For one channel the animations run successively 
 
 // The animations will run one after the other (1 channel / 2 animations)
 new Timeline([[anim1, anim2]], new TimelineOptions(loop:true)).start();
 
-// The animations will run simultaneously  (2 channels / 1 animation in each channel)
+// The animations will run simultaneously  (2 channel / 1 animation in each channel)
 new Timeline([[anim1], [anim2]], new TimelineOptions()).start();</pre>
    </div>
 
-    <script src="timeline.js"></script>
+    <script type="application/dart" src="timeline.dart"></script>
+    <script src="../dart.js"></script>
   </body>
 </html>

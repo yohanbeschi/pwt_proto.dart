@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Drag and Resize</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+      .example {
+        min-height: 250px;
+      }
+      
+      #container1, #container2 {
+        height: 250px;
+      }
+      #drag1, #drag2, #drag3 {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        position: absolute;
+      }
+      #target1, #target2, #target3-contained, #target3-pointer {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        float: right;
+        color: #fff;
+        margin:10px;
+      }
+      #target3 div {
+        border: 2px solid green;
+      }
+      
+      #ex4 {
+        height:320px;
+      }
+      table {
+        border-collapse: collapse;
+      }
+      td {
+        border:1px solid #000;
+        height:100px;
+        width:100px;
+        padding:0;
+      }
+      .piece {
+        position:absolute;
+        top:150px;
+        left:350px;
+        height:100px;
+        width:100px; 
+        background-color:blue;
+        color:white;
+        font-size:40px;
+        text-align:center;
+      }
+    </style>
+  </head>
+ 
+  <body>   
+    <h2>Drop</h2>
+    
+    <h3>Simple DropTarget</h3> 
+    <div id="ex1" class="example">
+      <div id="container1">
+          <div id="drag1">Drag me</div>
+          <div id="target1">Drop Target</div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#drag1 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+}
+#target1 {
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  float: right;
+  color: #fff;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="drag1"&gt;Drag me&lt;/div&gt;
+&lt;div id="target1"&gt;Drop Target&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+final ExtElement ee1 = $('#target1');
+final DropTarget dt1 = ee1.asDropTarget();
+dt1.onDrop((DropTargetEvent e) 
+  => ee1.appendHtml("&lt;p&gt;I've been dropped on&lt;/p&gt;")
+);
+
+$('#drag1').dnd([dt1]);</pre>
+    </div>   
+    
+    <h3 class="clear">Drag and Drop into Target</h3> 
+    <div id="ex2" class="example">
+      <div id="container2">
+          <div id="drag2">Drag me</div>
+          <div id="target2">Drop Target</div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#drag2 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+}
+#target2 {
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  float: right;
+  color: #fff;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="drag2"&gt;Drag me&lt;/div&gt;
+&lt;div id="target2"&gt;Drop Target&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+final ExtElement ee2 = $('#target2');
+final DropTarget dt2 = ee2.asDropTarget();
+dt2.onDrop((_) => ee2.css({'backgroundColor': 'blue'}));
+
+$('#drag2').dnd([dt2])
+  ..onDrop((DndEvent e) {
+     if (e.drag.activeTarget != null) {
+       e.drag.activeTarget.box.append(e.drag.box.element);
+       e.preventDefault();
+     }
+  });</pre>
+    </div>   
+    
+    <h3 class="clear">Events And Tolerance</h3>
+    <div id="ex3" class="example">
+      <div id="drag3">Drag me</div>
+
+      <div id="target3">
+        <div id="target3-contained">
+          Dragged object must be contained
+        </div>
+        <div id="target3-pointer">
+          Mouse pointer must be over
+        </div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#drag3 {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  position: absolute;
+}
+#target3-contained, #target3-pointer {
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  float: right;
+  color: #fff;
+  margin:10px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="drag3"&gt;Drag me&lt;/div&gt;
+
+&lt;div id="targets3"&gt;
+  &lt;div id="target3-contained"&gt;
+    Dragged object must be contained
+  &lt;/div&gt;
+  &lt;div id="target3-pointer"&gt;
+    Mouse pointer must be over
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+final ExtElement ee3A = $('#target3-contained');
+final DropTarget dt3A = ee3A.asDropTarget()
+  ..tolerance = Tolerance.CONTAINED
+  ..onDrop((_) {
+    ee3A.appendHtml("&lt;p&gt;I've been dropped on&lt;/p&gt");
+    ee3A.css({'opacity': '1'});
+  })
+  ..onActive((_) => ee3A.css({'border': '2px solid red'}))
+  ..onInactive((_) => ee3A.css({'border': ''}))
+  ..onEnter((_) => ee3A.css({'opacity': '0.7'}))
+  ..onLeave((_) => ee3A.css({'opacity': '1'}));
+
+final ExtElement ee3B = $('#target3-pointer');
+final DropTarget dt3B = ee3B.asDropTarget()
+  ..tolerance = Tolerance.CURSOR
+  ..onDrop((_) {
+    ee3B.appendHtml("&lt;p&gt;I've been dropped on&lt;/p&gt");
+    ee3B.css({'opacity': '1'});
+  })
+  ..onActive((_) => ee3B.css({'border': '2px solid red'}))
+  ..onInactive((_) => ee3B.css({'border': ''}))
+  ..onEnter((_) => ee3B.css({'opacity': '0.7'}))
+  ..onLeave((_) => ee3B.css({'opacity': '1'}));
+
+$('#drag3').dnd([dt3A, dt3B]);</pre>
+    </div>
+    
+    <h3 class="clear">Jigsaw - Disabling Dragging and Dropping</h3>
+    <div id="ex4" class="example">
+      <table style="float:left">
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+        <tr><td></td><td></td><td></td></tr>
+      </table>  
+      
+      <div style="float:left">
+        <div class="piece">1</div>
+        <div class="piece">2</div>
+        <div class="piece">3</div>
+        <div class="piece">4</div>
+        <div class="piece">5</div>
+        <div class="piece">6</div>
+        <div class="piece">7</div>
+        <div class="piece">8</div>
+        <div class="piece">9</div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#ex4 {
+  height:320px;
+}
+table {
+  border-collapse: collapse;
+}
+td {
+  border:1px solid #000;
+  height:100px;
+  width:100px;
+  padding:0;
+}
+.piece {
+  position:absolute;
+  top:150px;
+  left:350px;
+  height:100px;
+  width:100px; 
+  background-color:blue;
+  color:white;
+  font-size:40px;
+  text-align:center;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="ex4" class="example"&gt;
+  &lt;table style="float:left"&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;&lt;/tr&gt;
+  &lt;/table&gt;  
+  
+  &lt;div style="float:left"&gt;
+    &lt;div class="piece"&gt;1&lt;/div&gt;
+    &lt;div class="piece"&gt;2&lt;/div&gt;
+    &lt;div class="piece"&gt;3&lt;/div&gt;
+    &lt;div class="piece"&gt;4&lt;/div&gt;
+    &lt;div class="piece"&gt;5&lt;/div&gt;
+    &lt;div class="piece"&gt;6&lt;/div&gt;
+    &lt;div class="piece"&gt;7&lt;/div&gt;
+    &lt;div class="piece"&gt;8&lt;/div&gt;
+    &lt;div class="piece"&gt;9&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+final List<DropTarget> dts = 
+  $('#ex4 td').elements.map(
+      (e) =>
+        new DropTarget(e)..dropZoneType = DropZoneType.SPACER
+    ).toList();
+
+final ElementList ee4 = 
+  $('.piece').elements.forEach(
+    (e) => 
+      new ExtElement(e).dnd(dts)
+        ..onDrop(
+          (DndEvent e) {
+            if (e.drag.activeTarget != null) {
+              e.drag.activeTarget.moveToPosition(e.drag);
+              
+              e.drag.activeTarget.disable();
+              e.drag.disable();
+            }
+          }
+        )
+    );</pre>
+    </div>
+    <script type="application/dart" src="drop.dart"></script>
+    <script src="../dart.js"></script>
+  </body>
+</html>

@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Sortable</title>
+    <link rel="stylesheet" href="../css/style.css">
+    
+    <style>
+      #ex1, #ex2, #ex3, #ex4 {
+        height: 250px;
+      }
+      
+      #ex5 {
+        height: 530px;
+      }
+      
+      #ex6 {
+        min-height: 530px;
+      }
+      
+      #sortable1, #sortable3 {
+        float: left;
+      }
+      #sortable1 li, #sortable3 li, #ex4 li {
+        cursor: move;
+      }
+      
+      #sortable2 {
+        /* We need to have enough room 
+           to move an item to the bottom */
+        padding-bottom: 30px;
+      }
+      
+      #sortable2 li {
+        cursor: n-resize;
+      }  
+      
+      li {
+        margin-bottom: 5px;
+      }
+      
+      #target3 {
+        width: 200px;
+        height: 200px;
+        background-color: green;
+        float: right;
+        color: #fff;
+        margin:10px;
+      }
+      
+      #sortable5 {
+        background-color: #800;
+        overflow: hidden;
+        width: 240px;
+      }
+      #sortable5 .sortable5-widget {
+        background-color: #fff;
+        height: 160px;
+        margin: 10px;
+        width: 220px;
+      }
+      #sortable5 .sortable5-widget strong {
+        cursor: move;
+        display: block;
+        padding: 1em;
+        background-color: #eee;
+      }
+      #sortable5 .dropZone {
+        border: 2px dotted #a22;
+        margin: 10px;
+      }
+      
+      #cols-example .feature {
+        background: #666;
+        color: #fff;
+        height: 160px;
+        margin: 10px 10px 0;
+        width: 420px;
+      }
+      #cols-example .feature strong {
+        display: block;
+        padding: 1em;
+      }
+      #cols-example .col1,
+      #cols-example .col2,
+      #cols-example .col3 {
+        float: left;
+        width: 220px;
+      }
+      #cols-example .rightCols {
+        float: left;
+        width: 510px;
+      }
+      #cols-example .widget {
+        background: #fff;
+        height: 160px;
+        margin: 10px;
+        width: 200px;
+      }
+      #cols-example .widget strong {
+        background: #aaa;
+        color: #fff;
+        cursor: move;
+        display: block;
+        padding: 1em;
+      }
+      #cols-example .dropZone {
+        border: 2px dotted #800;
+        height: 160px;
+        margin: 10px;
+        width: 200px;
+      }
+    </style>
+  </head>
+ 
+  <body>   
+    <h2>Sortable</h2>
+    
+    <h3>Simple Sort</h3> 
+    <div id="ex1" class="example">
+      <ul id="sortable1" style="width:200px">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+      </ul>
+    </div>
+    
+    <div class="css">
+    <pre>
+#sortable1 {
+  float: left;
+}
+#sortable1 li {
+  cursor: move;
+}
+li {
+  margin-bottom: 5px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;ul id="sortable1" style="width:200px"&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+  &lt;li&gt;Item 4&lt;/li&gt;
+  &lt;li&gt;Item 5&lt;/li&gt;
+  &lt;li&gt;Item 6&lt;/li&gt;
+  &lt;li&gt;Item 7&lt;/li&gt;
+  &lt;li&gt;Item 8&lt;/li&gt;
+&lt;/ul&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+new Sortable(['#sortable1']);</pre>
+    </div>   
+    
+    <h3 class="clear">Restricted Sort</h3> 
+    <div id="ex2" class="example">
+      <ul id="sortable2">
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        <li>Item 5</li>
+        <li>Item 6</li>
+        <li>Item 7</li>
+        <li>Item 8</li>
+      </ul>
+    </div>
+    
+    <div class="css">
+    <pre>
+#sortable2 {
+  /* We need to have enough room 
+     to move an item to the bottom*/
+  padding-bottom: 30px;
+}
+#sortable2 li {
+  cursor: n-resize;
+}  
+li {
+  margin-bottom: 5px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;ul id="sortable2" style="width:200px"&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+  &lt;li&gt;Item 4&lt;/li&gt;
+  &lt;li&gt;Item 5&lt;/li&gt;
+  &lt;li&gt;Item 6&lt;/li&gt;
+  &lt;li&gt;Item 7&lt;/li&gt;
+  &lt;li&gt;Item 8&lt;/li&gt;
+&lt;/ul&gt;</pre></pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+final SortableOptions opts2 = new SortableOptions()
+  ..container = '#sortable2'
+  ..axis = Axis.Y_AXIS;
+new Sortable(['#sortable2'], opts2);</pre>
+    </div>  
+    
+    <h3 class="clear">Sort + External Drop</h3> 
+    <div id="ex3" class="example">
+      <div id="container3">
+        <ul id="sortable3" style="width:200px">
+          <li>Item 1</li>
+          <li>Item 2</li>
+          <li>Item 3</li>
+          <li>Item 4</li>
+          <li>Item 5</li>
+          <li>Item 6</li>
+          <li>Item 7</li>
+          <li>Item 8</li>
+        </ul>
+        
+        <div id="target3" data-dnd="target-only">
+          <div>Drop Target</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#sortable3 {
+  float: left;
+}
+#sortable3 li {
+  cursor: move;
+}
+li {
+  margin-bottom: 5px;
+}
+#target3 {
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  float: right;
+  color: #fff;
+  margin:10px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;ul id="sortable3" style="width:200px"&gt;
+  &lt;li&gt;Item 1&lt;/li&gt;
+  &lt;li&gt;Item 2&lt;/li&gt;
+  &lt;li&gt;Item 3&lt;/li&gt;
+  &lt;li&gt;Item 4&lt;/li&gt;
+  &lt;li&gt;Item 5&lt;/li&gt;
+  &lt;li&gt;Item 6&lt;/li&gt;
+  &lt;li&gt;Item 7&lt;/li&gt;
+  &lt;li&gt;Item 8&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div id="target3" data-dnd="target-only"&gt;
+  &lt;div&gt;Drop Target&lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+final ExtElement ee3 = $('#target3');
+final DropTarget dt3 = new DropTarget('#target3')
+    ..tolerance = Tolerance.CONTAINED
+    ..onDrop((_) {
+      ee3.appendHtml("&lt;p&gt;I've been dropped on&lt;/p&gt;");
+      ee3.css({'opacity': '1'});
+    })
+    ..onActive((_) => ee3.css({'border': '2px solid red'}))
+    ..onInactive((_) => ee3.css({'border': ''}))
+    ..onEnter((_) => ee3.css({'opacity': '0.7'}))
+    ..onLeave((_) => ee3.css({'opacity': '1'}));  
+
+
+final SortableOptions opts3 = new SortableOptions();
+new Sortable(['#sortable3', dt3], opts3);</pre>
+    </div>   
+    
+    <h3 class="clear">Multiple columns</h3> 
+    <div id="ex4" class="example">
+     <ul id="sortable4-1" style="width:200px; float:left">
+        <li>Item 1.1</li>
+        <li>Item 1.2</li>
+        <li>Item 1.3</li>
+        <li>Item 1.4</li>
+        <li>Item 1.5</li>
+        <li>Item 1.6</li>
+        <li>Item 1.7</li>
+        <li>Item 1.8</li>
+      </ul>
+      <ul id="sortable4-2" style="width:200px; float:left">
+        <li>Item 2.1</li>
+        <li>Item 2.2</li>
+        <li>Item 2.3</li>
+        <li>Item 2.4</li>
+        <li>Item 2.5</li>
+        <li>Item 2.6</li>
+        <li>Item 2.7</li>
+        <li>Item 2.8</li>
+      </ul>
+    </div>
+    
+    <div class="css">
+    <pre>
+#ex4 {
+  height: 250px;
+}
+#ex4 li {
+  cursor: move;
+}
+li {
+  margin-bottom: 5px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="ex4"&gt;
+ &lt;ul id="sortable4-1" 
+      style="width:200px; float:left"&gt;
+    &lt;li&gt;Item 1.1&lt;/li&gt;
+    &lt;li&gt;Item 1.2&lt;/li&gt;
+    &lt;li&gt;Item 1.3&lt;/li&gt;
+    &lt;li&gt;Item 1.4&lt;/li&gt;
+    &lt;li&gt;Item 1.5&lt;/li&gt;
+    &lt;li&gt;Item 1.6&lt;/li&gt;
+    &lt;li&gt;Item 1.7&lt;/li&gt;
+    &lt;li&gt;Item 1.8&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;ul id="sortable4-2"
+      style="width:200px; float:left"&gt;
+    &lt;li&gt;Item 2.1&lt;/li&gt;
+    &lt;li&gt;Item 2.2&lt;/li&gt;
+    &lt;li&gt;Item 2.3&lt;/li&gt;
+    &lt;li&gt;Item 2.4&lt;/li&gt;
+    &lt;li&gt;Item 2.5&lt;/li&gt;
+    &lt;li&gt;Item 2.6&lt;/li&gt;
+    &lt;li&gt;Item 2.7&lt;/li&gt;
+    &lt;li&gt;Item 2.8&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+new Sortable(['#sortable4-1', '#sortable4-2']);</pre>
+    </div>   
+    
+    <h3 class="clear">Div Elements Sort</h3> 
+    <div id="ex5" class="example">
+      <div id="sortable5">
+        <div class="sortable5-widget" id="sortable5-1">
+          <strong>Header 1</strong>
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+        </div>
+        <div class="sortable5-widget" id="sortable5-2">
+          <strong>Header 2</strong>
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+        </div>
+        <div class="sortable5-widget" id="sortable5-3">
+          <strong>Header 3</strong>
+          <ul>
+            <li>Item 1</li>
+            <li>Item 2</li>
+            <li>Item 3</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <div class="css">
+    <pre>
+#sortable5 {
+  background-color: #800;
+  overflow: hidden;
+  width: 240px;
+}
+#sortable5 .sortable5-widget {
+  background-color: #fff;
+  height: 160px;
+  margin: 10px;
+  width: 220px;
+}
+#sortable5 .sortable5-widget strong {
+  cursor: move;
+  display: block;
+  padding: 1em 1em 0;
+}
+#sortable5 .dropindicator {
+  border: 2px dotted #a22;
+  margin: 10px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="sortable5"&gt;
+  &lt;div class="sortable5-widget"&gt;
+    &lt;strong&gt;Header 1&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Item 1&lt;/li&gt;
+      &lt;li&gt;Item 2&lt;/li&gt;
+      &lt;li&gt;Item 3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class="sortable5-widget"&gt;
+    &lt;strong&gt;Header 2&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Item 1&lt;/li&gt;
+      &lt;li&gt;Item 2&lt;/li&gt;
+      &lt;li&gt;Item 3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;div class="sortable5-widget"&gt;
+    &lt;strong&gt;Header 3&lt;/strong&gt;
+    &lt;ul&gt;
+      &lt;li&gt;Item 1&lt;/li&gt;
+      &lt;li&gt;Item 2&lt;/li&gt;
+      &lt;li&gt;Item 3&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+new Sortable(['#sortable5'], new SortableOptions()
+    ..placeholderClass = 'dropindicator');</pre>
+    </div>   
+    
+    <h3 class="clear">Portal</h3> 
+    <div id="ex6" class="example" style="float:left">
+      <div id="cols-example">
+        <div class="col1">
+          <div class="widget" id="sortable6-1">
+            <strong>Header 1.1</strong>
+            <ul>
+              <li>Item 1.1.1</li>
+              <li>Item 1.1.2</li>
+              <li>Item 1.1.3</li>
+            </ul>
+          </div>
+          <div class="widget" id="sortable6-2">
+            <strong>Header 1.2</strong>
+            <ul>
+              <li>Item 1.2.1</li>
+              <li>Item 1.2.2</li>
+              <li>Item 1.2.3</li>
+            </ul>
+          </div>
+          <div class="widget" id="sortable6-3">
+            <strong>Header 1.3</strong>
+            <ul>
+              <li>Item 1.3.1</li>
+              <li>Item 1.3.2</li>
+              <li>Item 1.3.3</li>
+            </ul>
+          </div>
+        </div>  
+        <div class="rightCols">
+          <div class="feature">
+            <div class="feature-content">
+              <strong>This element can't be move</strong>
+              <ul>
+                <li>Item 0.1</li>
+                <li>Item 0.2</li>
+                <li>Item 0.3</li>
+              </ul>
+            </div>
+          </div>  
+          <div class="col2">
+            <div class="widget" id="sortable6-4">
+              <strong>Header 2.1</strong>
+              <ul>
+                <li>Item 2.1.1</li>
+                <li>Item 2.1.2</li>
+                <li>Item 2.1.3</li>
+              </ul>
+            </div>
+            <div class="widget" id="sortable6-5">
+              <strong>Header 2.2</strong>
+              <ul>
+                <li>Item 2.2.1</li>
+                <li>Item 2.2.2</li>
+                <li>Item 2.2.3</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col3">
+            <div class="widget" id="sortable6-6">
+              <strong>Header 3.1</strong>
+              <ul>
+                <li>Item 3.1.1</li>
+                <li>Item 3.1.2</li>
+                <li>Item 3.1.3</li>
+              </ul>
+            </div>
+            <div class="widget" id="sortable6-7">
+              <strong>Header 3.2</strong>
+              <ul>
+                <li>Item 3.2.1</li>
+                <li>Item 3.2.2</li>
+                <li>Item 3.2.3</li>
+              </ul>
+            </div>
+          </div>  
+        </div>
+      </div>
+    </div>
+    <div class="css clear">
+    <pre>
+#cols-example .feature {
+  background: #666;
+  color: #fff;
+  height: 160px;
+  margin: 10px 10px 0;
+  width: 420px;
+}
+#cols-example .feature strong {
+  display: block;
+  padding: 1em;
+}
+#cols-example .col1,
+#cols-example .col2,
+#cols-example .col3 {
+  float: left;
+  width: 220px;
+}
+#cols-example .rightCols {
+  float: left;
+  width: 510px;
+}
+#cols-example .widget {
+  background: #fff;
+  height: 160px;
+  margin: 10px;
+  width: 200px;
+}
+#cols-example .widget strong {
+  background: #aaa;
+  color: #fff;
+  cursor: move;
+  display: block;
+  padding: 1em;
+}
+#cols-example .dropZone {
+  border: 2px dotted #800;
+  height: 160px;
+  margin: 10px;
+  width: 200px;
+}</pre>
+    </div>
+    
+    <div class="html">
+    <pre>
+&lt;div id="cols-example"&gt;
+  &lt;div class="col1"&gt;
+    &lt;div class="widget" id="sortable6-1"&gt;
+      &lt;strong&gt;Header 1.1&lt;/strong&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Item 1.1.1&lt;/li&gt;
+        &lt;li&gt;Item 1.1.2&lt;/li&gt;
+        &lt;li&gt;Item 1.1.3&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="widget" id="sortable6-2"&gt;
+      &lt;strong&gt;Header 1.2&lt;/strong&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Item 1.2.1&lt;/li&gt;
+        &lt;li&gt;Item 1.2.2&lt;/li&gt;
+        &lt;li&gt;Item 1.2.3&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="widget" id="sortable6-3"&gt;
+      &lt;strong&gt;Header 1.3&lt;/strong&gt;
+      &lt;ul&gt;
+        &lt;li&gt;Item 1.3.1&lt;/li&gt;
+        &lt;li&gt;Item 1.3.2&lt;/li&gt;
+        &lt;li&gt;Item 1.3.3&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;  
+  &lt;div class="rightCols"&gt;
+    &lt;div class="feature"&gt;
+      &lt;div class="feature-content"&gt;
+        &lt;strong&gt;This element can't be move&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Item 0.1&lt;/li&gt;
+          &lt;li&gt;Item 0.2&lt;/li&gt;
+          &lt;li&gt;Item 0.3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;  
+    &lt;div class="col2"&gt;
+      &lt;div class="widget" id="sortable6-4"&gt;
+        &lt;strong&gt;Header 2.1&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Item 2.1.1&lt;/li&gt;
+          &lt;li&gt;Item 2.1.2&lt;/li&gt;
+          &lt;li&gt;Item 2.1.3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class="widget" id="sortable6-5"&gt;
+        &lt;strong&gt;Header 2.2&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Item 2.2.1&lt;/li&gt;
+          &lt;li&gt;Item 2.2.2&lt;/li&gt;
+          &lt;li&gt;Item 2.2.3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="col3"&gt;
+      &lt;div class="widget" id="sortable6-6"&gt;
+        &lt;strong&gt;Header 3.1&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Item 3.1.1&lt;/li&gt;
+          &lt;li&gt;Item 3.1.2&lt;/li&gt;
+          &lt;li&gt;Item 3.1.3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;div class="widget" id="sortable6-7"&gt;
+        &lt;strong&gt;Header 3.2&lt;/strong&gt;
+        &lt;ul&gt;
+          &lt;li&gt;Item 3.2.1&lt;/li&gt;
+          &lt;li&gt;Item 3.2.2&lt;/li&gt;
+          &lt;li&gt;Item 3.2.3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;  
+  &lt;/div&gt;
+&lt;/div&gt;</pre>
+    </div>
+    
+    <div class="dart">
+    <pre>
+new Sortable(['#cols-example .col1', 
+              '#cols-example .col2', 
+              '#cols-example .col3'], 
+  new SortableOptions()
+    ..dropZoneClass = 'dropZone'
+    ..handle = 'strong');</pre>
+    </div>   
+    
+    <script type="application/dart" src="sortable.dart"></script>
+    <script src="../dart.js"></script>
+  </body>
+</html>
