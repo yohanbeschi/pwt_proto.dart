@@ -4,7 +4,7 @@ Easy CSS manipulation, Animations and Drag and Drop in Dart.
 
 Demos
 -
-  - [Demo] (All in one page - ~3MB)
+  - [Demo] - (All in one page - ~3MB)
   - [hasClass()]
   - [addClasses()]
   - [toggleClasses()]
