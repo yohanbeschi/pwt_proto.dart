@@ -45,7 +45,6 @@ class DropTarget {
   
   DropTarget(dynamic element) {
     assertTrue(element is String || element is Element);
-    print(element);
     box = element is String ? $(element) : new ExtElement(element);
     _options = new DropOptions();
     _onActiveListener = _dropTargetActiveController.stream.listen(_onActive);
