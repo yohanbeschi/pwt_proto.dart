@@ -1,0 +1,5 @@
+.settings/
+*.bak
+*.js
+*.map
+*.deps
