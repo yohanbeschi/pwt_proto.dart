@@ -335,27 +335,40 @@ class FadeOptions extends SlideOptions {
     super(tween:tween, onStart:onStart, onComplete:onComplete);
 }
 
-Timeline _slideElement(final Element element, final num duration, final String action, SlideOptions options) {
+Timeline _slideElement(final Element element, num duration, final String action, SlideOptions options) {
   if (options == null) {
     options = new SlideOptions();
   }
   
+  TimelineAction onComplete;
+  
   int fromHeight;
   int toHeight;
   
-  if ('up' == action || 'toggle' == action && height(element) > 0) {
+  // TODO: use data-toggle="opened|closed"
+  if ('up' == action || 'toggle' == action && (height(element) > 0 || element.style.display == 'block')) {
     element.style.overflow = 'hidden'; // Without content won't disappear
     
     toHeight = 0;
     fromHeight = height(element);
-    //options._onComplete = (_) => element.style.display = 'none';
-  } else if ('down' == action || 'toggle' == action && height(element) <= 0) {
-    //element.style.display = 'block';
-    
+    onComplete = (_) => element.style.display = 'none';
+  } else if ('down' == action || 'toggle' == action && (height(element) <= 0 || element.style.display == 'none')) {
     fromHeight = height(element);
+    
+    element.style.display = 'block';
     element.style.height = '';
+    element.style.overflow = 'hidden';
+    
     toHeight = height(element);
+    
     element.style.height = '${fromHeight}px';
+    
+    onComplete= (_) => element.style.display = 'block';
+  }
+  
+  if (duration == null) {
+    final num distance = toHeight - fromHeight;
+    duration = 0.3 + (distance / 5000);
   }
   
   final Animation animation = animate(element, duration, 
@@ -364,6 +377,7 @@ Timeline _slideElement(final Element element, final num duration, final String a
   final Timeline timeline = new Timeline([[animation]], 
                                          new TimelineOptions(destroyOnComplete:true,
                                          onStart:options._onStart, onComplete:options._onComplete));
+  timeline.onComplete(onComplete);
   timeline.start();
   return timeline;  
 }
