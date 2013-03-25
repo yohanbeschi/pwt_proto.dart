@@ -31,7 +31,9 @@ void addClassList(final List<Element> elements, final String classesName) {
 }
 
 void _addClassInside(final Element element, final List<String> classesName) {
-  element.classes.addAll(classesName);
+  if (isNotEmptyList(classesName)) {
+    element.classes.addAll(classesName);
+  }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -46,7 +48,7 @@ void removeClassList(final List<Element> elements, final String classesName) {
 }
 
 void _removeClassInside(final Element element, final List<String> classesName) {
-  if (classesName != null && !classesName.isEmpty) {
+  if (isNotEmptyList(classesName)) {
     element.classes.removeAll(classesName);
   } else {
     element.classes.clear();
@@ -65,13 +67,15 @@ void toggleClassList(final List<Element> elements, final String classesName) {
 }
 
 void _toggleClassInside(final Element element, final List<String> classesName) {
-  classesName.forEach((String className) {
-    if (element.classes.contains(className)) {
-      element.classes.remove(className);
-    } else {
-      element.classes.add(className);
-    }
-  });
+  if (isNotEmptyList(classesName)) {
+    classesName.forEach((String className) {
+      if (element.classes.contains(className)) {
+        element.classes.remove(className);
+      } else {
+        element.classes.add(className);
+      }
+    });
+  }
 }
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -435,5 +439,7 @@ void _actOn(final Element element, Function outsideAction, Function insideAction
 }
 
 void _actOnList(final List<Element> elements, Function outsideAction, Function insideAction) {
-  elements.forEach((element) => outsideAction(element, insideAction));
+  if (isNotEmptyList(elements)) {
+    elements.forEach((element) => outsideAction(element, insideAction));
+  }
 }
