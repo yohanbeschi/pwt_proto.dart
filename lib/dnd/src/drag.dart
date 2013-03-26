@@ -2,8 +2,6 @@ part of pwt_dnd;
 
 typedef void DragAction(DragEvent event);
 
-
-
 class DragOptions {
   PlaceholderType _placeholderType;
   String _placeholderClass;
@@ -84,6 +82,13 @@ abstract class _ADrag {
   
   bool isEnabled = true;
   
+  int cumulativeHeight;
+  int cumulativeWidth;
+  int topLimit;
+  int bottomLimit;
+  int leftLimit;
+  int rightLimit;
+  
   _ADrag(dynamic element) {
     box = getExtElement(element);
     _dragging = _DragState.READY;
@@ -158,6 +163,7 @@ abstract class _ADrag {
 
     _prepareBox(mouseEvent);
     _setBounds();
+    _setManualLimits();
     
     return true;
   }
@@ -178,10 +184,10 @@ abstract class _ADrag {
     }
     
     this._dragging = _DragState.DRAGGING;
-    
+
     return true;
   }
-  
+
   void _prepareBox(MouseEvent mouseEvent) {
     // Save start drag infos
     this._mouseStart = new Point(mouseEvent.pageX, mouseEvent.pageY); 
@@ -216,6 +222,21 @@ abstract class _ADrag {
       }
     } else {
       this._bounds = null;
+    }
+  }
+  
+  void _setManualLimits() {
+    if (topLimit != null) {
+      topLimit = startPosition.top - topLimit;
+    }
+    if (bottomLimit != null) {
+      bottomLimit += startPosition.top;
+    }
+    if (leftLimit != null) {
+      leftLimit = startPosition.left - leftLimit;
+    }
+    if (rightLimit != null) {
+      rightLimit += startPosition.left;
     }
   }
   
@@ -256,6 +277,7 @@ abstract class _ADrag {
     _setPositionWithAxis(mouseEvent, position);
     _setPositionWithStep(position);
     _setPositionWithBounds(position);
+    _setPositionWithSize(position);
     _setNewPosition(position);
   }
   
@@ -304,11 +326,30 @@ abstract class _ADrag {
     }
   }
   
+  void _setPositionWithSize(final Position position) {
+    if (this._options._axis != Axis.Y_AXIS) {
+      if (leftLimit != null && position.left < leftLimit) {
+        position.left = leftLimit;
+      } else if (rightLimit  != null && position.left > rightLimit) {
+        position.left = rightLimit;
+      }
+    }
+
+    if (this._options._axis != Axis.X_AXIS) {
+      if (topLimit != null && position.top < topLimit) {
+        position.top = topLimit;
+      } else if (bottomLimit  != null && position.top > bottomLimit) {
+        position.top = bottomLimit;
+      }
+    }
+    
+    this.deltaPosition = new Position(position.left - currentPosition.left, position.top - currentPosition.top);
+  }
+  
   void _setNewPosition(final Position position) {
     this.box.style.left = '${position.left}px';
     this.box.style.top = '${position.top}px';
-    
-    this.deltaPosition = new Position(position.left - currentPosition.left, position.top - currentPosition.top);
+
     this._dragMoveController.add(new DragEvent(this));
     this.currentPosition = new Position(position.left, position.top);
   }
