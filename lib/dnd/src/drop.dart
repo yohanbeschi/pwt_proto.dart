@@ -12,7 +12,7 @@ class DropOptions {
 }
 
 class DropTargetEvent {
-  DragNDrop drag;
+  var drag;
   bool _droppedOnThis;
   
   DropTargetEvent(this.drag, [this._droppedOnThis = false]);
@@ -42,10 +42,13 @@ class DropTarget {
   StreamSubscription<DropTargetEvent> _onLeaveListener;
   
   bool isEnabled = true;
+  dynamic _childrenSelector;
   
-  DropTarget(dynamic element) {
+  DropTarget(dynamic element, [String childrenSelector]) {
     assertTrue(element is String || element is Element);
+
     box = element is String ? $(element) : new ExtElement(element);
+    _childrenSelector = childrenSelector;
     _options = new DropOptions();
     _onActiveListener = _dropTargetActiveController.stream.listen(_onActive);
     _onInactiveListener = _dropTargetInactiveController.stream.listen(_onInactive);
@@ -94,13 +97,16 @@ class DropTarget {
       this.dropZone.classes.add(this._options._dropZoneClass);
     }
     
-    dropEvent.drag.box.sizePlaceholder(this.dropZone.element, 0, 0, 'relative');
+    if (this._options._dropZoneType == DropZoneType.SPACER) {
+      dropEvent.drag.box.sizePlaceholder(this.dropZone.element, 0, 0, 'relative');
+    }
     
     // Get all children that are not placeholders or a dropZones
     final List<Element> children = this.box.children.where((Element e) 
-        => (dropEvent.drag._startingZone == null 
-             || dropEvent.drag._startingZone != e)
-           && (e != this.dropZone)).toList();
+          => (dropEvent.drag._startingZone == null 
+               || dropEvent.drag._startingZone != e)
+             && (e != this.dropZone)).toList();
+
     
     // Children as Boxes
     this._childBoxes = children.map((Element e) => new ExtElement(e)).toList(); 
@@ -145,7 +151,7 @@ class DropTarget {
    *   the start offset of the drag to the position of the drop indicator so that it will be animated
    *   to it's final location, rather than where the drag started.
    */
-  void moveToPosition(DragNDrop drag) {
+  void moveToPosition(var drag) {
     drag.startPosition = this.dropZone.position();
     drag._dropZone = this.dropZone;
     this.dropZone = null;

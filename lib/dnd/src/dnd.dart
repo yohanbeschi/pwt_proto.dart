@@ -1,7 +1,7 @@
 part of pwt_dnd;
 
 class DndEvent extends DragEvent {
-  DragNDrop drag;
+  var drag;
 
   DndEvent(drag) : super(drag) {
     this.drag = drag;
@@ -129,10 +129,10 @@ class DragNDrop extends _ADrag {
           
           
           if (draggablePosition <= totalHeight) {
-           // if (this.activeTarget._dropIndicatorAt != index) {
+            if (this.activeTarget._dropIndicatorAt != index) {
               box.insertAdjacentElement('beforeBegin', this.activeTarget.dropZone.element);
               this.activeTarget._dropIndicatorAt = index;
-            //}
+            }
             placed = true;
             break;
           }

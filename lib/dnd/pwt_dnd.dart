@@ -16,3 +16,4 @@ part 'src/drag.dart';
 part 'src/drop.dart';
 part 'src/resizable.dart';
 part 'src/drag_core.dart';
+part 'src/tree_drag.dart';

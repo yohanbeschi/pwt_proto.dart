@@ -276,7 +276,11 @@ abstract class _DragCore {
     _releaseDragging();
     _removeDocumentListeners();
     
-    this._dragDropController.add(new PwtDragEvent(this));
+    final PwtDragEvent event = new PwtDragEvent(this);
+    this._dragDropController.add(event);
+    if (event.defaultPrevented) {
+      return;
+    }
     
     _endDrag();
   }
@@ -333,8 +337,10 @@ class DraggablePoint extends _DragCore {
   }
   
   void _prepareBox(MouseEvent mouseEvent){
-    box.insertAdjacentElement('afterEnd', point.element);
-    
+    if (!point.isInDom()) {
+      box.insertAdjacentElement('afterEnd', point.element);
+    }
+  
     switch(cursorPosition) {
       case CursorPosition.CENTER: 
         cursorOffset = _cursorOffsetCenter;
@@ -427,15 +433,10 @@ class DraggableShadow extends _DragCore {
     int newLeft;
     int height;
     int width;
-    String position = model.element.getComputedStyle().position;
-    //if (position == 'static') {
-      Position _modelPosition = model.position();
-      newLeft = _modelPosition.x;
-      newTop = _modelPosition.y;
-    //} else {
-    //  newLeft = model.val('left');// - this.shadow.val('margin-left');
-    //  newTop = model.val('top');// - this.shadow.val('margin-top');
-    //}
+    final String position = model.element.getComputedStyle().position;
+    final Position _modelPosition = model.position();
+    newLeft = _modelPosition.x;
+    newTop = _modelPosition.y;
     
     if (outsideBorder) {
       newLeft -= this.shadow.val('border-left-width');

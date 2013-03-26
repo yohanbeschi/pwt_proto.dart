@@ -13,7 +13,7 @@ class SortableOptions extends DragOptions {
 }
 
 class SortEvent {
-  Sortable sortable;
+  var sortable;
   
   SortEvent(this.sortable);
 }
