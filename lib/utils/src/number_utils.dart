@@ -41,3 +41,7 @@ num toOneDecimal(double d) {
 int round(num number) {
   return (number + 0.5).toInt();
 }
+
+num abs(num number) {
+  return number > 0 ? number : -number;
+}
