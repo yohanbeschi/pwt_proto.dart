@@ -1,0 +1,21 @@
+
+.pwt-border-layout {
+  position: absolute;
+  /*top:0;
+  left:0;
+  bottom:0;
+  right:0;*/
+  background: red;//#F0F0F0;
+}
+
+.pwt-border-layout-handle {
+  position: absolute;
+}
+
+.pwt-horizontal-cursor {
+  cursor: e-resize;  
+}
+
+.pwt-vetical-cursor {
+  cursor: n-resize;  
+}
