@@ -92,6 +92,7 @@ class ExtElement implements PwtElement {
   
   bool isVisible() => cssLib.isVisible(this._element);
   bool isDisplayed() => cssLib.isDisplayed(this._element);
+  bool isInDom() => cssLib.isInDom(this._element);
   void show({bool useVisibility:false}) => cssLib.show(this._element, useVisibility:useVisibility);
   void hide({bool useVisibility:false})=> cssLib.hide(this._element, useVisibility:useVisibility);
   void toggle({bool useVisibility:false})=> cssLib.toggle(this._element, useVisibility:useVisibility);
@@ -392,6 +393,10 @@ class ExtElement implements PwtElement {
   DragNDrop dnd(List<dynamic> dropTargets) => new DragNDrop(this._element, dropTargets);
   
   DropTarget asDropTarget() => new DropTarget(this._element);
+  
+  void addTo(Element element, [String where = 'afterEnd']) {
+    element.insertAdjacentElement(where, this.element);
+  }
   
   dynamic noSuchMethod(InvocationMirror invocation) {
     return invocation.invokeOn(this._element);
