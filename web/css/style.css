@@ -33,9 +33,8 @@ h3 {
 
 .css, .html, .dart {
   float:left;
-  /*padding: 38px 9.5px 9.5px;*/
-  padding: 38px 1% 1%;
-  margin: 15px 1%;
+  padding: 38px 1px 1px;
+  margin: 15px 1px;
   width: 25%;
   border: 1px solid rgba(0, 0, 0, 0.5);
 }
