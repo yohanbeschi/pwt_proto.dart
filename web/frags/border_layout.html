@@ -10,30 +10,74 @@
       #ex1, #ex2, #ex3, #ex4-1, #ex4-2, #ex4-3, #ex4-4, #ex4-5, #ex4-6, #ex4-7, #ex5-1, #ex5-2, #ex6, #ex7 {
         height: 500px;
       }
+      
+      .dart {
+        width:auto;
+      }
+      
+      pre {
+        padding: 0 10px 10px 10px;
+      }
     </style>
   </head>
  
   <body>   
     <h2>BorderLayout</h2>
     
-    <h3>Full BorderLayout</h3> 
+    <h3>Objects used in this page</h3>
+    <div class="dart">
+    <pre>
+final ExtElement north = new ExtElement(new DivElement());
+north.css({'backgroundColor':'#99bbe8', 'height':'100px'});
+north.id = 'north';
+
+final ExtElement northEast = new ExtElement(new DivElement());
+northEast.css({'backgroundColor':'#ff8', 'height':'100px', 'width':'200px'});
+northEast.id = 'northEast';
+
+final ExtElement west = new ExtElement(new DivElement());
+west.css({'backgroundColor':'#99bbe8', 'width':'200px'});
+west.id = 'west';
+
+final ExtElement southEast = new ExtElement(new DivElement());
+southEast.css({'backgroundColor':'#ff8', 'height':'100px', 'width':'200px'});
+southEast.id = 'southEast';
+
+final ExtElement south = new ExtElement(new DivElement());
+south.css({'backgroundColor':'#99bbe8', 'height':'100px'});
+south.id = 'south';
+
+final ExtElement southWest = new ExtElement(new DivElement());
+southWest.css({'backgroundColor':'#ff8', 'height':'100px', 'width':'200px'});
+southWest.id = 'southWest';
+
+final ExtElement east = new ExtElement(new DivElement());
+east.css({'backgroundColor':'#99bbe8', 'width':'200px'});
+east.id = 'east';
+
+final ExtElement middle = new ExtElement(new DivElement());
+middle.css({'backgroundColor':'#fff'});
+middle.id = 'middle';</pre>
+    </div>
+    
+    <h3 class="clear">Full BorderLayout</h3> 
     <div id="ex1" class="example">
       
     </div>
     
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
     <div class="dart">
     <pre>
-</pre>
+new BorderLayout()
+  ..northWest = northWest
+  ..north = north
+  ..northEast = northEast
+  ..west = west
+  ..southWest = southWest
+  ..south = south
+  ..southEast = southEast
+  ..east = east
+  ..middle = middle
+  ..addTo('#ex1');</pre>
     </div>   
     
     <h3 class="clear">North/Middle/South BorderLayout</h3> 
@@ -41,19 +85,13 @@
       
     </div>
     
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
     <div class="dart">
     <pre>
-</pre>
+new BorderLayout()
+  ..north = north
+  ..south = south
+  ..middle = middle
+  ..addTo('#ex2');</pre>
     </div>  
  
     <h3 class="clear">North/West/Middle/South/East BorderLayout</h3> 
@@ -61,19 +99,17 @@
       
     </div>
     
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
     <div class="dart">
     <pre>
-</pre>
+new BorderLayout()
+  ..north = north
+  ..west = west
+  ..south = south
+  ..east = east
+  ..middle = middle
+  ..westFromTop = true
+  ..eastToBottom = true
+  ..addTo('#ex3');</pre>
     </div>  
 
     <h3 class="clear">Full BorderLayout With Extended Handles - 1</h3> 
@@ -81,19 +117,22 @@
       
     </div>
     
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
     <div class="dart">
     <pre>
-</pre>
+new BorderLayout()
+  ..northWest = northWest
+  ..north = north
+  ..northEast = northEast
+  ..west = west
+  ..southWest = southWest
+  ..south = south
+  ..southEast = southEast
+  ..east = east
+  ..middle = middle
+  
+  //---- Handles
+  ..enableExtendedHandles()
+  ..addTo('#ex4-1');</pre>
     </div> 
     
     <h3 class="clear">Full BorderLayout With Extended Handles - 2</h3> 
@@ -101,35 +140,35 @@
       
     </div>
     
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
     <div class="dart">
     <pre>
-</pre>
-    </div> 
+new BorderLayout()
+  ..northWest = northWest
+  ..north = north
+  ..northEast = northEast
+  ..west = west
+  ..southWest = southWest
+  ..south = south
+  ..southEast = southEast
+  ..east = east
+  ..middle = middle
+  
+  //---- Handles
+  ..extendNWNE = true
+  ..extendSWSE = true
+  ..handleNWN = true
+  ..handleNNE = true
+  ..handleWM = true
+  ..handleEM = true
+  ..handleSWS = true
+  ..handleSSE = true
+  ..addTo('#ex4-2');</pre>
+    </div>
     
     <!--
     <h3 class="clear">Full BorderLayout With Extended Handles - 3</h3> 
     <div id="ex4-3" class="example">
       
-    </div>
-    
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
     </div>
     
     <div class="dart">
@@ -142,16 +181,6 @@
       
     </div>
     
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
     <div class="dart">
     <pre>
 </pre>
@@ -160,16 +189,6 @@
     <h3 class="clear">Full BorderLayout With Extended Handles - 5</h3> 
     <div id="ex4-5" class="example">
       
-    </div>
-    
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
     </div>
     
     <div class="dart">
@@ -181,17 +200,7 @@
     <div id="ex4-6" class="example">
       
     </div>
-    
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
+ 
     <div class="dart">
     <pre>
 </pre>
@@ -200,16 +209,6 @@
     <h3 class="clear">Full BorderLayout With Extended Handles - 7</h3> 
     <div id="ex4-7" class="example">
       
-    </div>
-    
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
     </div>
     
     <div class="dart">
@@ -222,40 +221,48 @@
     <div id="ex5-1" class="example">
       
     </div>
-    
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
+
     <div class="dart">
     <pre>
-</pre>
+new BorderLayout()
+  ..north = north
+  ..west = west
+  ..south = south
+  ..east = east
+  ..middle = middle
+  ..westFromTop = true
+  ..eastToBottom = true
+  
+  //---- Handles
+  ..extendNWW = true
+  ..extendNNE = true
+  ..extendESE = true
+  ..extendSWS = true
+  ..addTo('#ex5-1');</pre>
     </div> 
     
     <h3 class="clear">North/West/Middle/South/East 2 BorderLayout with handles</h3> 
     <div id="ex5-2" class="example">
       
     </div>
-    
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
+
     <div class="dart">
     <pre>
-</pre>
+new BorderLayout()
+  ..north = north
+  ..west = west
+  ..south = south
+  ..east = east
+  ..middle = middle
+  ..westToBottom = true
+  ..eastFromTop = true
+  
+  //---- Handles
+  ..extendNWN = true
+  ..extendNEE = true
+  ..extendSSE = true
+  ..extendWSW = true
+  ..addTo('#ex5-2');</pre>
     </div> 
     
     <h3 class="clear">Full BorderLayout With Independent Handles (inconsistent results)</h3> 
@@ -263,19 +270,22 @@
       
     </div>
     
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
     <div class="dart">
     <pre>
-</pre>
+new BorderLayout()
+  ..northWest = northWest
+  ..north = north
+  ..northEast = northEast
+  ..west = west
+  ..southWest = southWest
+  ..south = south
+  ..southEast = southEast
+  ..east = east
+  ..middle = middle
+  
+  //---- Handles
+  ..enableHandles()
+  ..addTo('#ex6');</pre>
     </div> 
     
     <h3 class="clear">Full BorderLayout With Independent Handles (consistent results)</h3> 
@@ -283,19 +293,27 @@
       
     </div>
     
-    <div class="css">
-    <pre>
-</pre>
-    </div>
-    
-    <div class="html">
-    <pre>
-</pre>
-    </div>
-    
     <div class="dart">
     <pre>
-</pre>
+new BorderLayout()
+  ..northWest = northWest
+  ..north = north
+  ..northEast = northEast
+  ..west = west
+  ..southWest = southWest
+  ..south = south
+  ..southEast = southEast
+  ..east = east
+  ..middle = middle
+  
+  //---- Handles
+  ..handleNWN = true
+  ..handleNNE = true
+  ..handleWSW = true
+  ..handleSSE = true
+  ..extendWSW = true
+  ..extendSSE = true
+  ..addTo('#ex7');</pre>
     </div> 
             
     <script type="application/dart" src="border_layout.dart"></script>
