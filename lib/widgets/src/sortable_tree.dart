@@ -25,29 +25,39 @@ class SortableTree {
     _tree = getExtElement(tree);
     
     // Build Marker
-    final DivElement marker = new DivElement();
-    marker.style.position = 'absolute';
-    marker.classes.add('dynatree-drop-marker');
-    marker.style.zIndex = '1000';
-    marker.style.display = 'none';
-    marker.id = 'dynatree-drop-marker';
-    _tree.insertAdjacentElement('beforeBegin', marker);
+    ExtElement marker = $('#dynatree-drop-marker');
+    if (marker == null) {
+      marker = new ExtElement(new DivElement());
+      marker.style.position = 'absolute';
+      marker.classes.add('dynatree-drop-marker');
+      marker.style.zIndex = '1000';
+      marker.style.display = 'none';
+      marker.id = 'dynatree-drop-marker';
+      _tree.insertAdjacentElement('beforeBegin', marker.element);
+    }
     
     // Build Helper
-    final SpanElement helperImg = new SpanElement();
-    helperImg.classes.add('dynatree-drag-helper-img');
-    final SpanElement helperTitle = new SpanElement();
-    helperTitle.classes.add('dynatree-title');
-    
-    final DivElement helper = new DivElement();
-    helper.style.position = 'absolute';
-    helper.classes.add('dynatree-drag-helper');
-    helper.style.zIndex = '1000';
-    helper.style.display = 'none';
-    
-    helper.append(helperImg);
-    helper.append(helperTitle);
-    _tree.insertAdjacentElement('beforeBegin', helper);
+    ExtElement helper = $('#dynatree-drop-helper');
+    ExtElement helperTitle;
+    if (helper == null) {
+      final SpanElement helperImg = new SpanElement();
+      helperImg.classes.add('dynatree-drag-helper-img');
+      helperTitle = new ExtElement(new SpanElement());
+      helperTitle.classes.add('dynatree-title');
+      
+      helper = new ExtElement(new DivElement());
+      helper.id = 'dynatree-drop-helper';
+      helper.style.position = 'absolute';
+      helper.classes.add('dynatree-drag-helper');
+      helper.style.zIndex = '1000';
+      helper.style.display = 'none';
+      
+      helper.append(helperImg);
+      helper.append(helperTitle.element);
+      _tree.insertAdjacentElement('beforeBegin', helper.element );
+    } else {
+      helperTitle = new ExtElement(helper.children[1]);
+    }
     
     //print(_tree.parentElement.innerHtml);
     
