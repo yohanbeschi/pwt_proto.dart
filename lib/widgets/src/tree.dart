@@ -21,7 +21,7 @@ class TreeConfig {
   ConditionalClasses conditionalLiClasses;
     set liClasses(String classes) 
       => conditionalLiClasses = (a, b) => classes;
-  
+    
   // Not compatible with noFeature
 
   //---- Features
@@ -31,7 +31,7 @@ class TreeConfig {
       => conditionalOpenedAtFirst = (a, b) => openedAtFirst;
   
   ConditionalFeature conditionalUseIcons;
-    set useIcons(String useIcons) 
+    set useIcons(bool useIcons) 
       => conditionalUseIcons = (a, b) => useIcons;
   
   // Is this node always opened
@@ -45,6 +45,10 @@ class TreeConfig {
     set onClick(OnTreeAction e) => 
         conditionalOnClick = ((a, b) => e);
   
+  ConditionalFeature conditionalSelectable;
+    set selectable(bool selectable) 
+      => conditionalSelectable = (a, b) => selectable;
+    
   TreeConfig._internal() : this(null);
   
   TreeConfig(Accessor this._value, [Accessor this._children])
@@ -103,10 +107,12 @@ class Tree {
   static final String defaultIconClass = 'dynatree-icon';
   static final String defaultTextClass = 'dynatree-title';
   
+  ExtElement _root;
+  
   //List _data;
   List<TreeConfig> managers;
   Map dataAsMap;
-  List data;
+  List _data;
   
   TreeConfig globalTreeConfig;
   bool _noFeature;
@@ -136,6 +142,7 @@ class Tree {
   
   Tree([Accessor value, Accessor children]) : managers = new List(),
                                               expandableElements = new List(),
+                                              dataAsMap = new Map(),
                                               _noFeature = false,
                                               useDefaultCss = true,
                                               useConnectors = true,
@@ -155,11 +162,12 @@ class Tree {
     managers.add(nodeManager);
   }
   
-  void addTo(var element, [String where]) {
+  void addTo(var element, [String where = 'beforeEnd']) {
     final ExtElement parent = getExtElement(element);
-    final ExtElement newList = buildUList(data, managers);
+    final ExtElement newList = buildUList(_data, managers);
+    _root = newList;
     
-    parent.append(newList.element);
+    parent.insertAdjacentElement(where, newList.element);
     
     if (!_noFeature) {
       applyContainerStyle(newList);
@@ -205,8 +213,12 @@ class Tree {
         
         // Tranform a multiple level list into a plain map
         // ??
-        if (treeNode._key != null) {
-          this.dataAsMap[treeNode._key(data)] = element;
+        if (!_noFeature) {
+          if (treeNode._key != null) {
+            this.dataAsMap[treeNode._key(element)] = element;
+          } else {
+            this.dataAsMap[treeNode._value(element)] = element;
+          }
         }
       }
     }
@@ -264,6 +276,7 @@ class Tree {
     addTitle(li, treeNode, data, wrapper);
     addExpandCollapse(li, treeNode, data, wrapper);
     addOnClick(li, treeNode, data, wrapper);
+    //addOnClick(li, treeNode, data, wrapper);
   }
   
   void addSpanWrapper(ExtElement li, TreeConfig treeNode, dynamic data, TreeNodeDataWrapper wrapper) {
@@ -393,5 +406,26 @@ class Tree {
   
   void collapse() {
     expandableElements.forEach((ExtElement e) => e.hide());
+  }
+  
+  /*
+  List get data {
+    if (sortable) {
+      _data.clear();
+      
+      _data = reverseList(_root);
+      
+      return _data;
+    } else {
+      return _data;
+    }
+  }
+  */
+    set data(List data) => _data = data;
+    
+  List reverseList(ExtElement element) {
+    List list;
+    
+    
   }
 }
