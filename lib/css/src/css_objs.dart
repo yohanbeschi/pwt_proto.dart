@@ -1,16 +1,16 @@
 part of pwt_proto;
 
-class Point {
+class MutablePoint {
   int _x;
   int _y;
   
-  Point(int this._x, int this._y);
+  MutablePoint(int this._x, int this._y);
   
   int get x => _x;
   int get y => _y;
 }
 
-class Offset extends Point {
+class Offset extends MutablePoint {
   Offset(int left, int top) : super(left, top);
   
   int get left => this.x;

@@ -323,7 +323,7 @@ class ExtElement implements PwtElement {
    * 
    * [point] The point to check
    */
-  bool containsPoint(cssLib.Point point) {
+  bool containsPoint(cssLib.MutablePoint point) {
     final cssLib.Offset elementOffset = this.offset();
 
     return point.x >= elementOffset.left

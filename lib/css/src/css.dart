@@ -227,7 +227,7 @@ Offset pageOffset(Element element, [bool skipFirstRelative = true]) {
  * Gets the offset from the top left of the document.
  */
 Offset offset(final Element element) {
-  final ClientRect cr = element.getBoundingClientRect();
+  final Rect cr = element.getBoundingClientRect();
   //print('${cr.left.toInt()} ${window.document.documentElement.scrollLeft}'
   //' - ${cr.top.toInt()} ${window.document.documentElement.scrollTop}');
   

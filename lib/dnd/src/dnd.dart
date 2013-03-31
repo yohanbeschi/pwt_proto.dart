@@ -12,7 +12,7 @@ class DragNDrop extends _ADrag {
   
   List<DropTarget> _dropTargets;
   
-  Point _mouseCurrent;
+  MutablePoint _mouseCurrent;
   
   DropTarget activeTarget;
   
@@ -33,7 +33,7 @@ class DragNDrop extends _ADrag {
           dropTarget._dropTargetActiveController.add(new DropTargetEvent(this));
         }
   
-        this._mouseCurrent = new Point(mouseEvent.clientX, mouseEvent.clientY);
+        this._mouseCurrent = new MutablePoint(mouseEvent.client.x, mouseEvent.client.y);
   
         this._testForDropTargets();
       }
@@ -48,7 +48,7 @@ class DragNDrop extends _ADrag {
     super._dragMouse(mouseEvent);
     
     if (this._dropTargets != null) {
-      this._mouseCurrent = new Point(mouseEvent.clientX, mouseEvent.clientY);
+      this._mouseCurrent = new MutablePoint(mouseEvent.client.x, mouseEvent.client.y);
     }
     
     _testForDropTargets();

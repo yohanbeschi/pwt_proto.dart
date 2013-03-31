@@ -77,8 +77,8 @@ abstract class _DragCore {
   Position currentPosition;
   Position deltaPosition;
   
-  Point mouseStart;
-  Point mouseCurrent;
+  MutablePoint mouseStart;
+  MutablePoint mouseCurrent;
 
   Bounds _bounds;
   
@@ -128,13 +128,13 @@ abstract class _DragCore {
       return;
     }
 
-    this.mouseStart = new Point(mouseEvent.pageX, mouseEvent.pageY); 
+    this.mouseStart = new MutablePoint(mouseEvent.page.x, mouseEvent.page.y); 
     this.startPosition = box.position();
     
     if (_options.cursorAsOrigin) {
       ExtElement extElement = new ExtElement(mouseEvent.target);
-      startPosition.top = mouseEvent.clientY - extElement.offset().top + startPosition.top + extElement.val('margin-top');
-      startPosition.left = mouseEvent.clientX - extElement.offset().left + startPosition.left+ extElement.val('margin-left');
+      startPosition.top = mouseEvent.client.y - extElement.offset().top + startPosition.top + extElement.val('margin-top');
+      startPosition.left = mouseEvent.client.x - extElement.offset().left + startPosition.left+ extElement.val('margin-left');
     }
     
     currentPosition = new Position(this.startPosition.left, this.startPosition.top);
@@ -222,13 +222,13 @@ abstract class _DragCore {
   void _setPositionWithAxis(MouseEvent mouseEvent, final Position position) {
     if (this._options.axis == Axis.X_AXIS) {
       position.top = this.startPosition.top;
-      position.left = this.startPosition.x + mouseEvent.pageX - this.mouseStart.x;
+      position.left = this.startPosition.x + mouseEvent.page.x - this.mouseStart.x;
     } else if (this._options.axis == Axis.Y_AXIS) {
-      position.top = this.startPosition.top + mouseEvent.pageY - this.mouseStart.y;
+      position.top = this.startPosition.top + mouseEvent.page.y - this.mouseStart.y;
       position.left = this.startPosition.x;
     } else {
-      position.top = this.startPosition.top + mouseEvent.pageY - this.mouseStart.y;
-      position.left = this.startPosition.left + mouseEvent.pageX - this.mouseStart.x;
+      position.top = this.startPosition.top + mouseEvent.page.y - this.mouseStart.y;
+      position.left = this.startPosition.left + mouseEvent.page.x - this.mouseStart.x;
     }
   }
   

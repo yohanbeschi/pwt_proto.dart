@@ -37,7 +37,7 @@ class TreeDrag extends DraggablePoint {
         dropTarget._dropTargetActiveController.add(new DropTargetEvent(this));
       }
 
-      this.mouseCurrent = new Point(mouseEvent.clientX, mouseEvent.clientY);
+      this.mouseCurrent = new MutablePoint(mouseEvent.client.x, mouseEvent.client.y);
     }
     
     _addDocumentListeners(this._dragMouse, this._releaseElement);
@@ -47,7 +47,7 @@ class TreeDrag extends DraggablePoint {
     super.dragMouse(mouseEvent);
     
     if (this._dropTargets != null) {
-      this.mouseCurrent = new Point(mouseEvent.clientX, mouseEvent.clientY);
+      this.mouseCurrent = new MutablePoint(mouseEvent.client.x, mouseEvent.client.y);
     }
     
     _testForDropTargets();

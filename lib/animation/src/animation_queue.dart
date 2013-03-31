@@ -45,7 +45,7 @@ class AnimationQueue {
    * Start processing the queue every [_intervalTime].
    */
   void _startTimer() {
-    this._timer = new Timer.repeating(_intervalTime, this._processQueue);
+    this._timer = new Timer.periodic(_intervalTime, this._processQueue);
   }
   
   /**

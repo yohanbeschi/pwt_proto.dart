@@ -190,7 +190,7 @@ abstract class _ADrag {
 
   void _prepareBox(MouseEvent mouseEvent) {
     // Save start drag infos
-    this._mouseStart = new Point(mouseEvent.pageX, mouseEvent.pageY); 
+    this._mouseStart = new Point(mouseEvent.page.x, mouseEvent.page.y); 
     this.startPosition = this.box.position();
     this.currentPosition = new Position(this.startPosition.x, this.startPosition.y);
     this._preDragPosition = this.box.getComputedStyle().getPropertyValue('position');
@@ -284,13 +284,13 @@ abstract class _ADrag {
   void _setPositionWithAxis(MouseEvent mouseEvent, final Position position) {
     if (this._options._axis == Axis.X_AXIS) {
       position.top = this.startPosition.top;
-      position.left = this.startPosition.x + mouseEvent.pageX - this._mouseStart.x;
+      position.left = this.startPosition.x + mouseEvent.page.x - this._mouseStart.x;
     } else if (this._options._axis == Axis.Y_AXIS) {
-      position.top = this.startPosition.top + mouseEvent.pageY - this._mouseStart.y;
+      position.top = this.startPosition.top + mouseEvent.page.y - this._mouseStart.y;
       position.left = this.startPosition.x;
     } else {
-      position.top = this.startPosition.top + mouseEvent.pageY - this._mouseStart.y;
-      position.left = this.startPosition.left + mouseEvent.pageX - this._mouseStart.x;
+      position.top = this.startPosition.top + mouseEvent.page.y - this._mouseStart.y;
+      position.left = this.startPosition.left + mouseEvent.page.x - this._mouseStart.x;
     }
   }
   
