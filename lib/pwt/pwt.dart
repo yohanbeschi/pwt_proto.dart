@@ -16,7 +16,7 @@ PwtElement $(dynamic selector) {
     final List<Element> elements = queryAll(selector); 
     
     if (elements == null || elements.isEmpty) {
-      throw new NoSuchElementError();
+      return null;
     } else if (elements.length == 1) {
       return new ExtElement(elements[0]);
     } else {
