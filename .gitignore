@@ -1,4 +1,8 @@
-.settings/
+.DS_Store
+packages
+.project
+pubspec.lock
+.settings
 *.bak
 *.js
 *.map
