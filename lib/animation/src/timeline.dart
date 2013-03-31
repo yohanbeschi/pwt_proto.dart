@@ -342,28 +342,31 @@ Timeline _slideElement(final Element element, num duration, final String action,
   
   TimelineAction onComplete;
   
-  int fromHeight;
+  int fromHeight = height(element);
   int toHeight;
   
+  element.style.overflow = 'hidden'; // Without this, the content of the element won't disappear
+  
   // TODO: use data-toggle="opened|closed"
-  if ('up' == action || 'toggle' == action && (height(element) > 0 || element.style.display == 'block')) {
-    element.style.overflow = 'hidden'; // Without content won't disappear
-    
+  if ('up' == action || 'toggle' == action && (fromHeight > 0 || element.style.display == 'block')) {
     toHeight = 0;
-    fromHeight = height(element);
-    onComplete = (_) => element.style.display = 'none';
-  } else if ('down' == action || 'toggle' == action && (height(element) <= 0 || element.style.display == 'none')) {
-    fromHeight = height(element);
     
+    onComplete = (_) {
+      element.style.display = 'none';
+      element.style.height = '';
+    };
+  } else if ('down' == action || 'toggle' == action && (fromHeight <= 0 || element.style.display == 'none')) {
     element.style.display = 'block';
     element.style.height = '';
-    element.style.overflow = 'hidden';
-    
+
     toHeight = height(element);
     
     element.style.height = '${fromHeight}px';
     
-    onComplete= (_) => element.style.display = 'block';
+    onComplete = (_) {
+      element.style.display = 'block';
+      element.style.height = '';
+    };
   }
   
   if (duration == null) {
