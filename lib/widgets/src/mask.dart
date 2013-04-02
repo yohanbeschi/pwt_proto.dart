@@ -12,6 +12,8 @@ class Mask extends ExtElement {
   }
  
   Element buildMask() {
+    this.id = 'pwt_mask';
+    
     var css = this.style;
     css.margin = '0px';
     css.padding = '0px';
