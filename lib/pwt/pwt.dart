@@ -82,6 +82,8 @@ class ExtElement implements PwtElement {
     _initialPosition = this._element.getComputedStyle().position;
   }
   
+  ExtElement.tag(String tagName) : _element = new Element.tag(tagName);
+  
   Element get element => _element;
   String get initialPosition => _initialPosition;
   
@@ -394,8 +396,9 @@ class ExtElement implements PwtElement {
   
   DropTarget asDropTarget() => new DropTarget(this._element);
   
-  void addTo(Element element, [String where = 'afterEnd']) {
-    element.insertAdjacentElement(where, this.element);
+  void addTo(var parent, [String where = 'afterEnd']) {
+    final ExtElement containerParent = getExtElement(parent);
+    containerParent.insertAdjacentElement(where, this._element);
   }
   
   dynamic noSuchMethod(InvocationMirror invocation) {
