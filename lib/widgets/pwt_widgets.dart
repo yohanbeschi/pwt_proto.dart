@@ -9,6 +9,7 @@ import '../css/pwt_css.dart';
 import '../dnd/pwt_dnd.dart';
 import '../utils/pwt_utils.dart';
 
+part 'src/lined_textarea.dart';
 part 'src/mask.dart';
 part 'src/sortable.dart';
 part 'src/sortable_tree.dart';
